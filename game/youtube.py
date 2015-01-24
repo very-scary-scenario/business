@@ -1,4 +1,5 @@
 from json import loads
+from subprocess import check_output, CalledProcessError
 import re
 
 from aniso8601 import parse_duration
@@ -42,6 +43,19 @@ class Video(object):
             '{title}\n{duration}; views: {views}; likes: {likes}; '
             'dislikes: {dislikes}'.format(**self.__dict__)
         )
+
+
+def paste(*a):
+    for binary, args in [
+        ('xclip', ['-o']),
+        ('pbpaste', []),
+    ]:
+        try:
+            check_output(['which', binary])
+        except CalledProcessError:
+            continue
+
+        return from_url(check_output([binary] + args))
 
 
 def from_url(url):
