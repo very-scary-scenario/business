@@ -19,16 +19,23 @@ url_fmt = (
 class Video(object):
     @classmethod
     def from_url(cls, url):
-        return cls.from_id(
-            re.search(r'(/|\bv=)(?P<id>[a-zA-Z0-9_-]{11})\b', url).group('id')
-        )
+        match = re.search(r'(/|\bv=)(?P<id>[a-zA-Z0-9_-]{11})\b', url)
+        if match:
+            return cls.from_id(
+                match.group('id')
+            )
 
     @classmethod
     def from_id(cls, video_id):
-        connection = HTTPTLSConnection(google_domain, 443)
-        connection.request('GET', url_fmt.format(id=video_id))
-        result = loads(connection.getresponse().read())
-        return cls(result['items'][0])
+        try:
+            connection = HTTPTLSConnection(google_domain, 443)
+            connection.request('GET', url_fmt.format(id=video_id))
+            result = loads(connection.getresponse().read())
+            item = result['item'][0]
+        except:
+            return
+        else:
+            return cls(item)
 
     def __init__(self, item):
         self.title = item['snippet']['title']
@@ -46,7 +53,9 @@ class Video(object):
 
 
 def paste():
-    return from_url(pyperclip.paste())
+    clipboard = pyperclip.paste()
+    if clipboard:
+        return from_url()
 
 
 def from_url(url):
