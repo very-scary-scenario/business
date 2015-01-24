@@ -12,8 +12,13 @@ image bg mydesk = "mydesk.jpg"
 image bg officedesk = "officedesk.jpg"
 image bg cubicle = "cubicle.jpg"
 image bg kitchen = "kitchen.jpg"
+image bg bossroom = "bossroom.jpg"
 image cubicleguy neutral = "cubicleguy.png"
+image test = "test.jpg"
+image nick = "nick.png"
 
+
+# The game starts here.
 init python:
     import youtube
 
@@ -23,6 +28,7 @@ label start:
     $ kitchen_happy = False
     $ kitchen_sad = False
     $ desk_searched = False
+    $ bossroom_searched = False
     scene bg mydesk
 
     menu:
@@ -33,7 +39,7 @@ label video:
     $ video = youtube.paste()
     "THIS [video.title] VIDEO IS THE WORST [video.duration] I HAVE EVER SPENT AND [video.dislikes] PEOPLE AGREE WITH ME"
     "THIS [video.likes] PEOPLE DISAGREE AND ARE IDIOTS AND [video.views] PEOPLE HAVE SHARED THIS TERRIBLE EXPERIENCE"
-    
+
 #How about a pop-up of the phone and some vibration noises?
     
     "Ungh..."
@@ -71,8 +77,8 @@ label video:
         "Head to the kitchen and try to overhear people.":
             jump kitchen
             
-        "Sneak into boss' room.":
-            jump boss_room
+        "Sneak into your boss' room.":
+            jump bossroom
         
         "Ask the cheerful-looking person on the reception desk.":
             jump reception
@@ -108,32 +114,47 @@ label video:
             jump numbersheets
         
     label computer:
-       "You stare at the computer screen, eyes drawn to the password field."
-       "If this was a movie, you could probably guess what the password is."
-       "Unfortunately you're not nearly as important, so there will be no miracles here."
-       "Sorry about that."
-       jump searchmenu
+    "You stare at the computer screen, eyes drawn to the password field."
+    "If this was a movie, you could probably guess what the password is."
+    "Unfortunately you're not nearly as important, so there will be no miracles here."
+    "Sorry about that."
+    jump searchmenu
     
     label drawers:
-       "You face a tough decision."
-       "For the sake of saving face, you commit yourself to going through with it."
-       "{i}It's so gross though oh my goooood.{/i}"
-       "Ah whatever, it's your hand."
-       "And fingers."
-       "Hang on a second I'm going to vomit."
-       "."
-       ".."
-       "..."
-       "My apologies."
-       "That wasn't very professional of me."
-       "You gingerly extend your hand out in front of you and rummage around the drawers."
-       "These have definitely been worn before."
-       jump searchmenu
+    "You face a tough decision."
+    "For the sake of saving face, you commit yourself to going through with it."
+    "{i}It's so gross though oh my goooood.{/i}"
+    "Ah whatever, it's your hand."
+    "And fingers."
+    "Hang on a second I'm going to vomit."
+    "."
+    ".."
+    "..."
+    "My apologies."
+    "That wasn't very professional of me."
+    "You gingerly extend your hand out in front of you and rummage around the drawers."
+    "These have definitely been worn before."
+    jump searchmenu
+       
+    label numbersheets:
+    $ desk_searched = True
+    "There's a stack of sheets on your desk."
+    "Perhaps it's because you were busy with something."
+    "Perhaps it's because you were trying to {i}look{/i} busy with something."
+    "Whatever the case, it may prove useful in figuring out just what you're meant to be doing here."
+    "The numbers are clearly statistics. Lots of talk about 'hits'."
+    "That's a pretty awful website you're running if that's what it is, because these figures are diabolical."
+    "You're not going to be in this company longer when your hits are typically fourty or less."
+    "Looking at another sheet, the hits seem to skyrocket."
+    "Millions? Hundreds of millions? This seems to be something else but I can't make heads or tails of it."
+    "But whatever, that's your problem not mine. I believe in you."
+    "But seriously if you're running a website I think you're soon to be replaced.."
+    jump pre_meeting_options
     
     label cubicle:
         scene bg cubicle
         with fade
-        show cubicleguy neutral
+        show nick at left
     
     if cubicleguy_talked:
         c "Dude, you should hurry along to that meeting. You don't want to piss off the boss."
@@ -173,16 +194,13 @@ label video:
     label banana4:
     
     $ cubicleguy_talked = True
-    
     c "No offense bro, but you're not the kind of guy to crack jokes and it shows. Maybe don't do that in your meeting."
-    
     m "S-sorry. I'll leave now."
     jump pre_meeting_options
             
     label banana5:
     
     $ cubicleguy_talked = True
-    
     c "Ah, sorry bud, I'm not in that meeting. Too high level and important for a character like me."
     c "I think I heard some people talking about it over in the kitchen, though."
     m "Thanks."
@@ -326,5 +344,47 @@ label video:
     m "I'm sorry."
     ka "It's okay."
     jump kitchendialogue
+    
+    label bossroom:
+        scene bg bossroom
+        with fade
+        show cubicleguy neutral at right
+    
+    if bossroom_searched:
+        "You don't have the time to hide in here and spin around in the chair."
+        "But now that I've said it that does sound kind of fun."
+        "Now I'm disappointed."
+        jump pre_meeting_options
+        
+    "Well, this is it. We've become desperate enough to put the job on the line. Whatever it is."
+    "Fortunately for you, the boss insists on arriving to meetings early. They've already booted out the people who should currently be in the meeting room."
+    "Perks of being the boss, I suppose."
+    "But it gives you free reign of the boss' room. You'd hope that there would be something here that would tell you what's up."
+    "{i}You'd hope.{/i}"
+    
+    label inbossroom:
+        scene bg bossroom
+        with fade
+        show cubicleguy neutral at left
+    
+    menu:
+        "Search under the desk.":
+            jump boss1
+            
+        "Look at the paperwork on the desk.":
+            jump boss2
+        
+        "Look inside the book marked 'Bossing for Dummies'.":
+            jump boss3
+        
+    label boss1:
+    
+    ka "Good morning?"
+    kb "2pm is a bit late for a good morning."
+    ka "Actually, it's morning somewhere in the world."
+    kb "Oh, how informative and original. Thanks for that."
+    m "...good afternoon."
+    ka "Good afternoon."
+    kb "Good afternoon."
     
     return
