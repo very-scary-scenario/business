@@ -1,8 +1,8 @@
 from json import loads
-from subprocess import check_output, CalledProcessError
 import re
 
 from aniso8601 import parse_duration
+import pyperclip
 from tlslite import HTTPTLSConnection
 
 
@@ -46,16 +46,7 @@ class Video(object):
 
 
 def paste():
-    for binary, args in [
-        ('xclip', ['-o']),
-        ('pbpaste', []),
-    ]:
-        try:
-            check_output(['which', binary])
-        except CalledProcessError:
-            continue
-
-        return from_url(check_output([binary] + args))
+    return from_url(pyperclip.paste())
 
 
 def from_url(url):
