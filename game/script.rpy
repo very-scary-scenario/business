@@ -25,8 +25,9 @@ label start:
     $ desk_searched = False
     scene bg mydesk
 
-    $ title = youtube.from_url(renpy.input('give us a url')).title
-    "THIS [title] VIDEO IS TERRIBLE"
+    $ video = youtube.from_url(renpy.input('give us a url'))
+    "THIS [video.title] VIDEO IS THE WORST [video.duration] I HAVE EVER SPENT AND [video.dislikes] PEOPLE AGREE WITH ME"
+    "THIS [video.likes] PEOPLE DISAGREE AND ARE IDIOTS AND [video.views] PEOPLE HAVE SHARED THIS TERRIBLE EXPERIENCE"
     
 #How about a pop-up of the phone and some vibration noises?
     
