@@ -6,6 +6,8 @@
 # Declare characters used by this game.
 define m = Character('Me', color="#c8ffc8")
 define c = Character('Cubicle Guy', color="#c8ffc8")
+define b = Character('Receptionist', color="#c8ffc8")
+define g = Character('Goggles', color="#c8ffc8")
 define ka = Character('Kitchen Goer A', color="#c8ffc8")
 define kb = Character('Kitchen Goer B', color="#c8ffc8")
 image bg mydesk = "mydesk.jpg"
@@ -13,9 +15,11 @@ image bg officedesk = "officedesk.jpg"
 image bg cubicle = "cubicle.jpg"
 image bg kitchen = "kitchen.jpg"
 image bg bossroom = "bossroom.jpg"
+image bg reception = "reception.jpg"
 image cubicleguy neutral = "cubicleguy.png"
 image test = "test.jpg"
 image nick = "nick.png"
+image beyonce = "beyonce.png"
 
 
 # The game starts here.
@@ -29,6 +33,7 @@ label start:
     $ kitchen_sad = False
     $ desk_searched = False
     $ bossroom_searched = False
+    $ reception_visited = False
     scene bg mydesk
 
     menu:
@@ -379,12 +384,85 @@ label video:
         
     label boss1:
     
-    ka "Good morning?"
-    kb "2pm is a bit late for a good morning."
-    ka "Actually, it's morning somewhere in the world."
-    kb "Oh, how informative and original. Thanks for that."
-    m "...good afternoon."
-    ka "Good afternoon."
-    kb "Good afternoon."
+    "It's an interesting approach to take, that much is for sure."
+    "I mean, we have paperwork all over the desk and various doodads around the room."
+    "But you opt for looking under the desk."
+    "I'm starting to wonder exactly how seriously you're taking this."
+    "I hope you're not panicking over the time limit."
+    "This is totally your fault. Like seriously, what were you expecting?"
+    "Oh hey actually, hold up. We've got something here."
+    "Never mind. It's just dust."
+    jump inbossroom
     
+    label boss2:
+    $ bossroom_searched = True
+    "Here it is. The true nature of the boss, finally revealed!"
+    "This paperwork, while certainly interesting, isn't going to be much help with you."
+    "That is unless you find doodles of moustached individuals helpful."
+    "Underneath the top layer of doodles is a list of popular singers. I guess they're pop musicians, anyway. I've heard of them so they must be pretty famous."
+    "Beyoncé? Sure, why not. Not so sure about the obsession with Kanye though."
+    "He was great in that one Twitter simulation, though."
+    "Nothing important, apparently. Just what appears to be notes on the boss' latest mix tape."
+    "Glad to see the boss can get the hard work done when it really matters."
+    jump pre_meeting_options
+    
+    label boss3:
+    
+    "They sure do make these books for the dumbest subjects, huh."
+    "Fingers crossed this isn't how the boss got their job. Realistically? Roll a dice, I guess."
+    "Hold the phone, this book is annotated. There might be something interesting here."
+    "Hmm, looks like a few passages are highlighted. 'How to negotiate with business partners' and 'Budgeting 101' are quite vigorously circled."
+    "Let's just be happy knowing that they are at least trying to better themselves, one way or another."
+    jump inbossroom
+    
+    label reception:
+        scene bg reception
+        with fade
+    
+    if reception_visited:
+        "You don't have the time to hide in here and spin around in the chair."
+        "But now that I've said it that does sound kind of fun."
+        "Now I'm disappointed."
+        jump pre_meeting_options
+        
+    "Nothing like a friendly receptionist to lighten the mood."
+    "I mean, I can't really see what they'll be able to do about your meeting predicament, but I guess it's worth a shot?"
+    "If we hang around long enough we might get some free coffee."
+    
+    label atreception:
+        scene bg reception
+        with fade
+        show beyonce
+    
+    menu:
+        "Ask about the meeting.":
+            jump reception1
+            
+        "Ask about the weather.":
+            jump reception2
+            
+        "Ask about how common it is for people to lose memories in the office.":
+            jump reception3
+            
+    label reception1:
+    
+    b "The meeting? I'm sorry, I'm afraid you're going to have to be more specific."
+    b "There's just far too much going on here that it's difficult to keep track of."
+    b "Well, difficult is perhaps a stretch. It's just no fun."
+    jump atreception
+    
+    label reception2: 
+    b "The weather? Hang on, let me ask my Personal Assistant™ about that."
+    b "Okay Goggles, tell me what the weather is like outside."
+    g "ｄｉａｌｌｉｎｇ　ｇｒｅｇｏｒｙ"
+    b "It's raining."
+    jump atreception
+    
+    label reception3: 
+    b "Well, I'm not sure about"
+    b "Okay Goggles, tell me what the weather is like outside."
+    b "ｄｉａｌｌｉｎｇ　ｇｒｅｇｏｒｙ"
+    b "It's raining."
+    jump pre_meeting_options
+                                                        
     return
