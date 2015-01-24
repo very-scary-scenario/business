@@ -1,2 +1,5 @@
 game/saves/
 tmp/
+*.bak
+log.txt
+traceback.txt
