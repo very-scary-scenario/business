@@ -14,6 +14,8 @@ image bg cubicle = "cubicle.jpg"
 image bg kitchen = "kitchen.jpg"
 image cubicleguy neutral = "cubicleguy.png"
 
+init python:
+    import youtube
 
 # The game starts here.
 label start:
@@ -22,6 +24,9 @@ label start:
     $ kitchen_sad = False
     $ desk_searched = False
     scene bg mydesk
+
+    $ title = youtube.Video.from_url(renpy.input('give us a url')).title
+    "THIS [title] VIDEO IS TERRIBLE"
     
 #How about a pop-up of the phone and some vibration noises?
     

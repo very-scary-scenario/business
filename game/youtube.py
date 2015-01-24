@@ -1,11 +1,18 @@
+from json import loads
 import re
 
 from aniso8601 import parse_duration
-from googleapiclient.discovery import build
+from tlslite import HTTPTLSConnection
 
 
-youtube = build(
-    'youtube', 'v3', developerKey='AIzaSyDLcq3oxp3VFhFJlQKZqqmeSrB7xoizkx8')
+google_domain = 'www.googleapis.com'
+url_fmt = (
+    '/youtube/v3/videos?'
+    'alt=json&'
+    'part=snippet%2Cstatistics%2CcontentDetails&'
+    'id={id}'
+    '&key=AIzaSyDLcq3oxp3VFhFJlQKZqqmeSrB7xoizkx8'
+)
 
 
 class Video(object):
@@ -17,11 +24,10 @@ class Video(object):
 
     @classmethod
     def from_id(cls, video_id):
-        return cls([
-            i for i in youtube.videos().list(
-                id=video_id, part='snippet,statistics,contentDetails'
-            ).execute()['items']
-        ][0])
+        connection = HTTPTLSConnection(google_domain, 443)
+        connection.request('GET', url_fmt.format(id=video_id))
+        result = loads(connection.getresponse().read())
+        return cls(result['items'][0])
 
     def __init__(self, item):
         self.title = item['snippet']['title']
