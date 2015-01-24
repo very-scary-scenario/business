@@ -1,3 +1,5 @@
+import re
+
 from aniso8601 import parse_duration
 from googleapiclient.discovery import build
 
@@ -9,7 +11,9 @@ youtube = build(
 class Video(object):
     @classmethod
     def from_url(cls, url):
-        raise NotImplementedError
+        return cls.from_id(
+            re.search(r'(/|\bv=)(?P<id>[a-zA-Z0-9_-]{11})\b', url).group('id')
+        )
 
     @classmethod
     def from_id(cls, video_id):
@@ -36,3 +40,7 @@ class Video(object):
 
 if __name__ == '__main__':
     print(Video.from_id('wZZ7oFKsKzY'))
+    print(Video.from_url('woofaiodsjae/wZZ7oFKsKzY jiaosjdosa'))
+    print(Video.from_url('/wZZ7oFKsKzY'))
+    print(Video.from_url(
+        'https://www.youtube.com/watch?v=yCOJwZzBiVo&list=PLDEA007FAB5D8F479'))
