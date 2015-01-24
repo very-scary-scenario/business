@@ -44,6 +44,10 @@ class Video(object):
         )
 
 
+def from_url(url):
+    return Video.from_url(url)
+
+
 if __name__ == '__main__':
     print(Video.from_id('wZZ7oFKsKzY'))
     print(Video.from_url('woofaiodsjae/wZZ7oFKsKzY jiaosjdosa'))
