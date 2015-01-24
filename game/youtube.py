@@ -45,7 +45,7 @@ class Video(object):
         )
 
 
-def paste(*a):
+def paste():
     for binary, args in [
         ('xclip', ['-o']),
         ('pbpaste', []),

@@ -2,6 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 136: indentation mismatch.
+File "game/script.rpy", line 29: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
+    "There is a youtube video URL in my clipboard"
+                                                  ^
 
 Ren'Py Version: Ren'Py 6.18.3.761

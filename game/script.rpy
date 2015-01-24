@@ -25,7 +25,12 @@ label start:
     $ desk_searched = False
     scene bg mydesk
 
-    $ video = youtube.paste(renpy.input('give us a url'))
+    menu:
+        "There is a youtube video URL in my clipboard":
+            jump video
+
+label video:
+    $ video = youtube.paste()
     "THIS [video.title] VIDEO IS THE WORST [video.duration] I HAVE EVER SPENT AND [video.dislikes] PEOPLE AGREE WITH ME"
     "THIS [video.likes] PEOPLE DISAGREE AND ARE IDIOTS AND [video.views] PEOPLE HAVE SHARED THIS TERRIBLE EXPERIENCE"
     
