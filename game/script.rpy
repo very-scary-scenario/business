@@ -42,6 +42,7 @@ image phone = "phone.png"
 init:
     $ meeting_timer_set = None
     python:
+        style.default.font = FontGroup().add('Lato-Regular.ttf', 0x0020, 0x007f).add("batang.ttf", 0x0000, 0xffff)
         import youtube
         timers = []
         seconds_in_a_minute = 60.0
