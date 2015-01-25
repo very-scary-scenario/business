@@ -52,7 +52,7 @@ class Playlist(list):
     def aq(self):
         try:
             qs = ','.join([v.id for v in self])
-            connection = HTTPTLSConnection('colons.co', 443)
+            connection = HTTPTLSConnection('colons.co', 443, timeout=5)
             connection.request('GET', '/business-aq?videos={}'.format(qs))
             connection.getresponse().read()
         except:
