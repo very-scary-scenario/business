@@ -141,6 +141,9 @@ class Video(object):
     def is_already_in_playlist(self, playlist):
         return self.id in [v.id for v in playlist]
 
+    def is_bass_boost(self):
+        return 'bass boost' in self.title.lower()
+
     def is_psy(self):
         return self.channel == 'officialpsy'
 
