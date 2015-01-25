@@ -3,6 +3,7 @@
 from json import loads
 import re
 import webbrowser
+from zlib import crc32
 
 from aniso8601 import parse_duration
 import pyperclip
@@ -40,9 +41,58 @@ class Playlist(list):
         return u'\n'.join([u'{}. {}'.format(i+1, v.title)
                            for i, v in enumerate(self)])
 
+    def choice(self, items):
+        """
+        Return a random but deterministic choice from [items] based on the IDs
+        of the present videos.
+        """
+
+        return items[
+            crc32(u'|'.join(
+                [v.id for v in self] +
+                [repr(items)]
+            )) % len(items)
+        ]
+
     @property
     def stats(self):
-        return 'YOU SOLD FORTY BILLION COPIES'
+        return '\n\n'.join([
+            self.choice([
+                'It was a critical hit!',
+                'It was a cultural sensation!',
+                'Glenn Beck called it "like the tears of an eagle".',
+                'Simon Cowell called it "acceptable".',
+                'You were all convicted of crimes against humanity.',
+            ]),
+            'It made {amount}{unit} {currency}.'.format(
+                amount=self.choice(['forty', 'a million', 'twelve', 'two']),
+                unit=self.choice([' billion', ' trillion', '']),
+                currency=self.choice(['pounds', 'dollars', 'rubles', 'mBTC',
+                                      'Nectar points']),
+            ),
+            'It made it to {}'.format(
+                self.choice([
+                    'number one on the hit parade.',
+                    "number seventeen in Time's Person of the Year.",
+                    'landfill, mostly.',
+                    "second place in {}'s yearly roundup.".format(self.choice([
+                        'Adventure Fishing Magazine',
+                        'Modern Locomotives Illustrated',
+                        'Pile and Driver',
+                        'The Beano',
+                        'Punch',
+                        'Bunbunmaru',
+                    ])),
+                ])
+            ),
+            'Of the 4 people in the meeting, {} impressed.'.format(
+                self.choice([
+                    '{} {}'.format(i, 'was' if i == 1 else 'were')
+                    for i in range(4)
+                ])
+            ),
+            'The boss was not impressed.',
+        ])
 
     def is_complete(self):
         return len(self) >= PLAYLIST_LENGTH
