@@ -695,7 +695,7 @@ label new_video:
         jump endgame
 
     if playlist:
-        "Okay so so far we have:\n[playlist.formatted]"
+        "Okay so we have:\n[playlist.formatted]"
 
     menu:
         "There is a youtube video URL in my clipboard":
