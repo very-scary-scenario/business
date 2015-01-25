@@ -73,7 +73,7 @@ init:
 
 
 label start:
-    jump awaken  # XXX should be the dream sequence (or at least awaken)
+    jump new_video  # XXX should be the dream sequence (or at least awaken)
 
 label awaken:
     $ cubicleguy_talked = False
@@ -689,6 +689,10 @@ label meetingd101:
     jump new_video
 
 label new_video:
+    if youtube.playlist.is_complete():
+        "WE ARE DONE HERE"
+        jump endgame
+
     if youtube.playlist:
         "Okay so so far we have:\n[youtube.playlist.formatted]"
 
@@ -733,3 +737,6 @@ label short_video:
 label nothing_special_video:
     "there is nothing special about this"
     jump new_video
+
+label endgame:
+    "many combolations elizagerth"

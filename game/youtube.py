@@ -27,6 +27,9 @@ class Playlist(list):
     def formatted(self):
         return u'\n'.join([u' - {}'.format(v.title) for v in self])
 
+    def is_complete(self):
+        return len(self) >= 5
+
 
 class Video(object):
     @classmethod
