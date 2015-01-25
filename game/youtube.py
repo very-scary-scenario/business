@@ -85,7 +85,7 @@ class Playlist(list):
                     ])),
                 ])
             ),
-            'Of the 4 people in the meeting, {} impressed.'.format(
+            'Of your 4 colleagues in the meeting, {} impressed.'.format(
                 self.choice([
                     '{} {}'.format(i, 'was' if i == 1 else 'were')
                     for i in range(4)
