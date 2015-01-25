@@ -556,15 +556,15 @@ label inmeeting:
     scene bg meeting
     show boss
 
-    b "In that case we're just waiting on Fiona."
+    b "In that case we're just waiting on Mia."
 
     hide boss
     show boss at left
-    show mia at right
+    show fiona at right
 
     mi "Oh she's definitely in the office. I've seen her."
 
-    hide mia
+    hide fiona
     hide boss
     show boss
 
@@ -639,6 +639,8 @@ label inmeeting:
     hide boss
     
 label meeting_dec_one:
+    scene bg meeting
+    with fade
     
     menu:
         "Yes. We're here to discuss the downright terrifying levels of body odour in the office.":
@@ -701,7 +703,7 @@ label meetingd1o4:
     h "Not bad at all! That's definitely at least an idea!"
     hide david
     hide harold
-    jump meeting_dec_one
+    jump meetingpart2
     
 label meetingd1o5:
     show boss
@@ -729,9 +731,12 @@ label meetingpart2:
     hide mia
     hide fiona
     b "Anyway, that's all well and good, but there's so much that goes on here that it's hard to keep track of what album we're talking about."
-    b "[Name], care to fill us in?"
+    b "[name], care to fill us in?"
+    hide boss
     
 label meeting_dec_two:
+    scene bg meeting
+    with fade
     
     menu:
         "Sure. This is regarding the classical music compilation we're currently working on.":
@@ -806,35 +811,45 @@ label meetingd2o3:
     mi "NEW BEYONCÉ ALBUM!"
     "{i}incomprehensible screaming: the reckoning.{/i}"
     m "Sorry boss."
-    b "You better be."
+    b "You'd better be."
     hide mia
     hide boss
     hide leslie
     jump meeting_dec_two
     
 label meetingd2o4:
-    show david at left
-    show harold at right
-    d "Hey, that's not a bad idea."
-    h "Not bad at all! That's definitely at least an idea!"
-    hide david
-    hide harold
+    show boss
+    b "Ooh, an employee photo album? That's kind of cool!"
+    b "We could make it like those American graduation books and have witty comments beneath our pictures."
+    b "I could be wearing my Batman onesie, throwing a batarang and the comment would read 'The Dark Boss Rises'."
+    b "We'll sort it out. We have some money that we're meant to use for employee bonuses that isn't getting used."
+    b "Thanks for the idea, but let's get back on topic."
+    hide boss
     jump meeting_dec_two
     
 label meetingd2o5:
     show boss
-    b "Three proposals?"
-    m "Yes sir."
-    b "Three fully written proposals?"
-    m "Yes sir."
-    b "Can I see them?"
-    m "No sir."
-    b "We don't write proposals here."
-    m "No sir."
-    b "We ARE the law."
-    m "Yes sir."
+    b "The latest {b}and{/b} greatest! I like that!"
+    b "Bit of a lie, but hey, it's part of the business."
+    b "It's like... our own personal autotune."
+    b "We hide the truth with ａｇｇｒｅｓｓｉｖｅ　ａｕｄｉｏ　ｔｒｅａｔｍｅｎｔ　ａｎｄ　ｔｈｅ　ｌａｔｅｓｔ　ｉｎ　ｖｏｃａｌ　ｔｅｃｈｎｏｌｏｇｉｅｓ．"
+    show fiona at left
+    f "That's deep."
+    hide fiona
+    b "Yes. Yes it is."
     hide boss
-    jump meeting_dec_two
+    jump meetingpart3
+    
+label meetingpart3:
+    show bg meeting
+    show boss
+    b "We are here to finalise the track list for this year's Now album, which as you all know is titled:"
+    b "Now That's What I Call a Collection of Songs from Various Artists Arranged into a Seemingly Arbitrary Order but Actually Not Quite Because we Made Sure that The Best Ones were Near the Top! 137."
+    b "For the most part, we've finalised the necessary deals for 95%% of the music, but we still need something with a bit more pizzazz."
+    b "Something a bit more rambunctious."
+    b "Ostentatious! Exorbitant! Profligate!"
+    b "c-r-a-z-y."
+    b "Does anyone have any ideas?"
     
     
     # guff below
