@@ -138,26 +138,88 @@ class Video(object):
             'dislikes: {dislikes}'.format(**self.__dict__)
         )
 
+    def _popularity_is_statistically_significant(self):
+        return (self.likes + self.dislikes) > 20
+
+    def popularity(self):
+        return self.likes / float(self.likes + self.dislikes)
+
+    # ============================ #
+    # THINGS TO WRITE THINGS ABOUT #
+    # ============================ #
     def is_already_in_playlist(self, playlist):
         return self.id in [v.id for v in playlist]
 
     def is_bass_boost(self):
         return 'bass boost' in self.title.lower()
 
+    def is_gangnam_style(self):
+        return self.id == '9bZkp7q19f0'
+
     def is_psy(self):
         return self.channel == 'officialpsy'
 
+    # length
     def is_really_long(self):
         return self.channel == 60 * 60 * 3
 
     def is_long(self):
         return self.duration.seconds > 60 * 10
 
-    def is_gangnam_style(self):
-        return self.id == '9bZkp7q19f0'
-
     def is_short(self):
         return self.duration.seconds < 90
+
+    def is_really_short(self):
+        return self.duration.seconds < 30
+
+    # popularity
+    def is_trending_hard(self):
+        return self.views == 301  # finger on the pulse, eh?
+
+    def is_watched_super_lots(self):
+        return self.views > 500000
+
+    def is_watched_lots(self):
+        return self.views > 10000
+
+    def is_not_watched_a_lot(self):
+        return self.views <= 300
+
+    def is_hardly_watched_at_all(self):
+        return self.views <= 10
+
+    # likes/dislikes:
+    def is_universally_liked(self):
+        return (
+            self._popularity_is_statistically_significant() and
+            self.popularity() == 1
+        )
+
+    def is_popular(self):
+        # this check should probably be close to the end; it'll be true like a
+        # lot of the time
+        return (
+            self._popularity_is_statistically_significant() and
+            self.popularity() > 0.9
+        )
+
+    def is_divisive(self):
+        return (
+            self._popularity_is_statistically_significant() and
+            0.3 < self.popularity() < 0.7
+        )
+
+    def is_disliked(self):
+        return (
+            self._popularity_is_statistically_significant() and
+            self.popularity() < 0.2
+        )
+
+    def is_universally_despised(self):
+        return (
+            self._popularity_is_statistically_significant() and
+            self.popularity() == 0
+        )
 
 
 def paste():
