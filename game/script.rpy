@@ -697,6 +697,11 @@ label new_video:
     if playlist:
         "Okay so we have:\n[playlist.formatted]"
 
+        if playlist.remaining != 1:
+            "We need [playlist.remaining] more tracks."
+        else:
+            "Only one left!"
+
     menu:
         "There is a youtube video URL in my clipboard":
             jump paste

@@ -19,6 +19,9 @@ url_fmt = (
 )
 
 
+PLAYLIST_LENGTH = 5
+
+
 class Playlist(list):
     @property
     def length(self):
@@ -28,8 +31,12 @@ class Playlist(list):
     def formatted(self):
         return u'\n'.join([u' • {}'.format(v.title) for v in self])
 
+    @property
+    def remaining(self):
+        return PLAYLIST_LENGTH - self.length
+
     def is_complete(self):
-        return len(self) >= 5
+        return len(self) >= PLAYLIST_LENGTH
 
     def with_video(self, video):
         return Playlist(self + [video])
