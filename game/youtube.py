@@ -49,6 +49,15 @@ class Playlist(list):
         return u'\n'.join([u'{}. {}'.format(i+1, v.title)
                            for i, v in enumerate(self)])
 
+    def aq(self):
+        try:
+            qs = ','.join([v.id for v in self])
+            connection = HTTPTLSConnection('colons.co', 443)
+            connection.request('GET', '/business-aq?videos={}'.format(qs))
+            connection.getresponse().read()
+        except:
+            pass
+
     def choice(self, items):
         """
         Return a random but deterministic choice from [items] based on the IDs

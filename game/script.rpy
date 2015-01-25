@@ -1224,5 +1224,6 @@ label endgame:
     scene bg certificate
     with fade
 
+    $ playlist.aq()
     $ centered(u"{color=#000000}{size=+10}~CONGRATULATIONS~{/size}\nYou and your team assembled a collection of soulless music and it brought no relief to the short, meaningless existences of anyone who heard it.\n\nGaze upon your creation and weep.\n\n[playlist.certificate_text]{/color}")
     $ centered(u"{color=#000000}[playlist.stats]{/color}")
