@@ -679,17 +679,10 @@ label meetingd101:
     
     # guff below
 
-    $ video = youtube.paste()
-    if video:
-        "THIS [video.title] VIDEO IS THE WORST [video.duration] I HAVE EVER SPENT AND [video.dislikes] PEOPLE AGREE WITH ME"
-        "THIS [video.likes] PEOPLE DISAGREE AND ARE IDIOTS AND [video.views] PEOPLE HAVE SHARED THIS TERRIBLE EXPERIENCE"
-    else:
-        "i dunno maybe our internet is broken that didn't work"
-
+    $ youtube.open_youtube()
     jump new_video
 
 label new_video:
-    $ youtube.open_youtube()
     if playlist.is_complete():
         "WE ARE DONE HERE"
         jump endgame
