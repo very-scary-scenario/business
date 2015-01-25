@@ -27,6 +27,7 @@ image bg reception = "reception.jpg"
 image bg premeeting = "premeeting.jpg"
 image bg meeting = "meeting.jpg"
 image bg george = "trenchfoot.jpg"
+image bg certificate = im.Scale("certificate.gif", 800, 600)
 image beyonce = "beyonce.png"
 image barbara = "barbara.png"
 image bdb = "bdb.png"
@@ -918,4 +919,6 @@ label nothing_special_video:
     jump new_video
 
 label endgame:
-    $ centered(u"~CONGRATULATIONS~\nYou and your team assembled a collection of soulless music and it brought no relief the the short, meaningless existences of anyone who heard it.\nGaze upon your creation and weep.\n[playlist.certificate_text]")
+    scene bg certificate
+    with fade
+    $ centered(u"{color=#000000}{size=+10}~CONGRATULATIONS~{/size}\nYou and your team assembled a collection of soulless music and it brought no relief the the short, meaningless existences of anyone who heard it.\n\nGaze upon your creation and weep.\n\n[playlist.certificate_text]{/color}")
