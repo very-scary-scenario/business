@@ -35,6 +35,11 @@ class Playlist(list):
     def remaining(self):
         return PLAYLIST_LENGTH - self.length
 
+    @property
+    def certificate_text(self):
+        return u'\n'.join([u'{}. {}'.format(i+1, v.title)
+                           for i, v in enumerate(self)])
+
     def is_complete(self):
         return len(self) >= PLAYLIST_LENGTH
 

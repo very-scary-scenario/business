@@ -73,7 +73,7 @@ init:
             ui.close()
 
 label start:
-    jump awaken  # XXX should be the dream sequence (or at least awaken)
+    jump track_selection  # XXX should be the dream sequence (or at least awaken)
 
 label awaken:
     $ cubicleguy_talked = False
@@ -903,4 +903,4 @@ label nothing_special_video:
     jump new_video
 
 label endgame:
-    "many combolations elizagerth"
+    $ centered(u"~CONGRATULATIONS~\nYou and your team assembled a collection of soulless music and it brought no relief the the short, meaningless existences of anyone who heard it.\nGaze upon your creation and weep.\n[playlist.certificate_text]")
