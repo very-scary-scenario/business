@@ -599,7 +599,7 @@ label inmeeting:
     scene bg meeting
     with fade
     
-    $ name = renpy.input("Looks like you're up. I hope you know who you are by now.")
+    $ name = renpy.input("Looks like you're up. Give them your name!")
     
     m "Hello, my name is [name], I'm uhh..."
     
@@ -635,6 +635,8 @@ label inmeeting:
     m "R-right. Yes. I did say that, huh."
     b "You do remember what we're here to talk about, right?"
     
+    hide boss
+    
 label meeting_dec_one:
     
     menu:
@@ -652,6 +654,28 @@ label meeting_dec_one:
         
         "I have three proposals to share regarding our next big client.":
             jump meetingd1o5
+            
+label meetingd101:
+    show boss
+    b "[name], it's unlike you to be making jokes. Is something the matter?"
+    b "It's basically common knowledge that we're not having that meeting until Monday when everyone is in the office."
+    hide boss
+    jump meeting_dec_one
+    
+label meetingd101:
+    show harold left
+    h "Business strategy?"
+    show mia right
+    mi "Have we ever had a business strategy?"
+    hide harold
+    show boss left
+    b "I have a dartboard."
+    hide boss
+    hide mia
+    jump meeting_dec_one
+    
+
+    
     
     # guff below
 
