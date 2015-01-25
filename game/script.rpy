@@ -39,7 +39,6 @@ image dave = "dave.png"
 image fiona = "fiona.png"
 image phone = "phone.png"
 
-# The game starts here.
 init:
     $ meeting_timer_set = None
     python:
@@ -71,8 +70,11 @@ init:
                 ui.remove(timer)
             ui.close()
 
-# The game starts here.
+
 label start:
+    jump new_video  # XXX should be the dream sequence (or at least awaken)
+
+label awaken:
     $ cubicleguy_talked = False
     $ kitchen_happy = False
     $ kitchen_sad = False
@@ -80,18 +82,6 @@ label start:
     $ bossroom_searched = False
     $ reception_visited = False
     scene bg mydesk
-
-    menu:
-        "There is a youtube video URL in my clipboard":
-            jump video
-
-label video:
-    $ video = youtube.paste()
-    if video:
-        "THIS [video.title] VIDEO IS THE WORST [video.duration] I HAVE EVER SPENT AND [video.dislikes] PEOPLE AGREE WITH ME"
-        "THIS [video.likes] PEOPLE DISAGREE AND ARE IDIOTS AND [video.views] PEOPLE HAVE SHARED THIS TERRIBLE EXPERIENCE"
-    else:
-        "i dunno maybe our internet is broken that didn't work"
 
     #How about a pop-up of the phone and some vibration noises?
 
@@ -583,4 +573,34 @@ label inmeeting:
     hide boss
     show david
 
+    $ video = youtube.paste()
+    if video:
+        "THIS [video.title] VIDEO IS THE WORST [video.duration] I HAVE EVER SPENT AND [video.dislikes] PEOPLE AGREE WITH ME"
+        "THIS [video.likes] PEOPLE DISAGREE AND ARE IDIOTS AND [video.views] PEOPLE HAVE SHARED THIS TERRIBLE EXPERIENCE"
+    else:
+        "i dunno maybe our internet is broken that didn't work"
+
     return
+
+label new_video:  # XXX should be nothing
+    menu:
+        "There is a youtube video URL in my clipboard":
+            jump paste
+
+label paste:
+    $ video = youtube.paste()
+    if video:
+        if video.is_short():
+            jump short_video
+        else:
+            jump nothing_special_video
+    else:
+        "i dunno maybe our internet is broken that didn't work"
+
+label short_video:
+    "FUCK MAN THAT IS WAY TOO SHORT"
+    jump new_video
+
+label nothing_special_video:
+    "there is nothing special about this"
+    jump new_video

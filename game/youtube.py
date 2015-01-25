@@ -51,6 +51,9 @@ class Video(object):
             'dislikes: {dislikes}'.format(**self.__dict__)
         )
 
+    def is_short(self):
+        return self.duration.seconds < 90
+
 
 def paste():
     clipboard = pyperclip.paste()
