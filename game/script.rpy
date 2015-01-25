@@ -20,6 +20,7 @@ define l = Character('Leslie', color="#c8ffc8")
 define ge = Character('George', color="#c8ffc8")
 define sub = Character('Subordinate', color="#c8ffc8")
 define tut = Character('Hint', color="#c8ffc8")
+define ddd = Character('3D Boss', color="#c8ffc8")
 image bg mydesk = "mydesk.jpg"
 image bg officedesk = "officedesk.jpg"
 image bg cubicle = "cubicle.jpg"
@@ -43,6 +44,7 @@ image dave = "dave.png"
 image fiona = "fiona.png"
 image phone = "phone.png"
 image david = "david.png"
+image dddboss = "3dboss.png"
 
 init:
     $ meeting_timer_set = None
@@ -113,6 +115,7 @@ label awaken:
     $ kitchen_sad = False
     $ desk_searched = False
     $ bossroom_searched = False
+    $ bossroom_entered = False
     $ reception_visited = False
     scene bg mydesk
     play music "shitty vn music.ogg"
@@ -254,12 +257,18 @@ label cubicle:
     if cubicleguy_talked:
         c "Dude, you should hurry along to that meeting. You don't want to piss off the boss."
         jump pre_meeting_options
-
-    c "Oh hey there, Steve. How's it hanging?"
-    "See? It isn't that difficult. You should remember that though. Just in case."
-
+    "These office cubicles are the worst."
+    "It's like seeing battery hens, only with humans and in an office."
+    "The smell is about the same, though."
+    c "Oh, hey there."
+    "Oh no, he's locked eyes with you. You won't be able to escape until after the battle."
+    c "How's it hanging?"
+    
     menu:
         "It's hanging just fine, thanks. And yours?":
+            jump banana
+            
+        "I'm hanging just fine, thanks. And you?":
             jump banana
 
         "I'm alright, thanks. Yourself?":
@@ -278,7 +287,7 @@ label banana3:
     c "So was there something you were after?"
 
     menu:
-        "I've lost all of my memories and I've got an important meeting shortly. Give a bro a hand.":
+        "I've lost all of my memories and I've got an important meeting shortly. I would appreciate some assistance.":
             jump banana4
 
         "Do you know anything about the meeting that's in a few minutes?":
@@ -286,13 +295,15 @@ label banana3:
 
 label banana4:
     $ cubicleguy_talked = True
-    c "No offense bro, but you're not the kind of guy to crack jokes and it shows. Maybe don't do that in your meeting."
+    c "No offense, but cracking awful jokes doesn't really suit you. Don't quit the day job."
     m "S-sorry. I'll leave now."
     jump pre_meeting_options
 
 label banana5:
     $ cubicleguy_talked = True
-    c "Ah, sorry bud, I'm not in that meeting. Too high level and important for a character like me."
+    c "Ah, sorry, I'm not in that meeting."
+    c "I'm far too busy shouting down phones at people demanding our 'final lists'."
+    c "Damn prank callers."
     c "I think I heard some people talking about it over in the kitchen, though."
     m "Thanks."
     jump pre_meeting_options
@@ -453,6 +464,7 @@ label bossroom:
 label inbossroom:
     scene bg bossroom
     with fade
+    $ bossroom_entered = True
 
     menu:
         "Search under the desk.":
@@ -558,7 +570,7 @@ label attoilet:
     with fade
 
     menu:
-        "Flush all your hopes and dreams down the toilet.":
+        "Flush all of your hopes and dreams down the toilet.":
             jump toilet1
 
         "Wash your hands.":
@@ -568,40 +580,46 @@ label attoilet:
             jump toilet3
 
 label toilet1:
-    "*FLUSH*."
+    "*FLUSH*"
     "Well, there they go..."
     jump attoilet
 
 label toilet2:
     $ hands_washed_times += 1
-    "*SLOSH*."
+    "*SLOSH*"
     if hands_washed_times == 1:
         "You have washed your hands once."
     else:
         "You have washed your hands [hands_washed_times] times."
-    menu:
-        "Yes.":
-            "You need to stop trying waste time...."
-            jump attoilet
-
-        "Wash Hands.":
-            "Maybe this isn't the best use fo your time?"
-            jump toilet2
+    jump attoilet
 
 label toilet3:
     "As much as you might like to, you can't just spend five minutes in the toilets."
     "People might need them."
     "For poopin'."
-    "There are a couple of magazines here."
-    "Man this are gross...."
+    "There are a couple of magazines here, though."
+    "Man, these are gross. This one is even stained."
+    
+label toilet3b:
     menu:
         "Pick-up Smash Hits.":
-            "Relevant statement about music"
+            "Looks like someone has taken a pen to this magazine."
+            "Some musicians seem to be circled. Others have had scars and eyepatches drawn on them."
+            "Productivity at its finest."
             jump pre_meeting_options
 
         "Pick-up Adventure Fishing.":
-            "Chris - Add funny line here"
-            jump pre_meeting_options
+            "ARE YOU LOOKING FOR FISHING?"
+            "ARE YOU ALSO LOOKING FOR AN ADVENTURE?"
+            "HOLY SHIT COULD YOU ALSO BE LOOKING FOR ADVENTURE FISHING?"
+            "Because, like, this magazine is way too damp to even open so I guess you're out of luck."
+            jump toilet3b
+            
+        "Pick-up TIME Magazine.":
+            "Is this a legitimate copy of Time?"
+            "It's got a picture of a strange looking guy in a monkey suit on the front."
+            "I bet he won't be able to get a job any time soon."
+            jump toilet3b
 
 label timesup:
     show leslie
@@ -657,10 +675,15 @@ label inmeeting:
     b "Please continue, George."
     hide boss
     hide david
-    ge "I was finished talking. Sorry boss."    
+    ge "I was finished talking. Sorry boss."
+    m "Wait, I thought that music was playing all over the office?"
+    show boss
+    b "No, I've been following you."
+    b "Everywhere."
+    if bossroom_entered:
+        b "Including my office. We'll talk about that later."
 
     scene bg meeting
-    show boss
 
     b "In that case we're just waiting on Mia."
 
@@ -731,6 +754,11 @@ label inmeeting:
     mi "Thank you, boss!"
     b "We'll talk about this later. Bring your things."
     mi "O-okay..."
+    
+    if hands_washed_times >= 5:
+        b "What... what is that smell?"
+        mi "I'm sorry boss, someone used up all of the soap in the ladies bathroom."
+        b "I'm... sorry I asked."
     
     hide mia
     hide boss
@@ -1015,12 +1043,33 @@ label paste:
 
         $ playlist = playlist.with_video(video)
 
+        if video.is_the_trailer():
+            jump trailer
+        if video.was_already_suggested():
+            jump was_already_suggested
+        if video.is_3d():
+            jump is_3d
+        if video.is_trending_hard():
+            jump trending_hard
         if video.is_gangnam_style():
             jump gangnam_style_video
         if video.is_psy():
             jump psy_video
+        if video.is_bass_boost():
+            jump bass_boost_video
+        if video.is_really_short():
+            jump really_short_video
+        if video.is_hardly_watched_at_all():
+            jump dead_video
+        if video.is_really_long():
+            jump really_long_video
+        if video.is_not_watched_a_lot():
+            jump obscure_video
         if video.is_short():
             jump short_video
+        if video.is_long():
+            jump long_video
+        
         else:
             jump nothing_special_video
     else:
@@ -1028,37 +1077,144 @@ label paste:
         jump new_video
 
 label gangnam_style_video:
+    show boss
     b "OPPA GANGNAM FUCK YOU."
+    hide boss
+    jump new_video
+    
+label bass_boost_video:
+    show dave at left
+    kb "Damn son! Where'd you find this!?"
+    hide dave
     jump new_video
 
 label psy_video:
+    show boss
     b "I'm sorry if you were being serious, but please don't play that around here any more."
     b "No one plays PSY around here and lives to tell the tale."
+    hide boss
+    jump new_video
+    
+label really_short_video:
+    show boss
+    b "Did anything even play just then? Did I blink and miss it?"
+    b "Actually, that sounds rather edgey. Like you're making a statement. I like that."
+    hide boss
     jump new_video
 
 label short_video:
+    show boss
     b "That song is a bit short, isn't it? People will feel robbed if we put that on the compilation."
     b "Well... more so."
+    hide boss
+    jump new_video
+
+label long_video:
+    show david
+    d "A masterpiece. An epic."
+    d "A song that goes on far too long."
+    d "Where am I?"
+    hide david
+    jump new_video
+
+label really_long_video:
+    show boss
+    b "It's been a while since I've heard music that just goes on and on and on and on."
+    hide boss
+    show mia
+    mi "And on and on and on and on."
+    hide mia
+    show david
+    d "And on and on and on."
+    hide david
+    scene bg george
+    ge "And on and on."
+    scene bg meeting
+    show boss
+    b "And on."
+    hide boss
+    jump new_video
+    
+label obscure_video:
+    scene bg george
+    ge "Everyone knows that the more views a video has, the better the music is."
+    scene bg meeting
+    show fiona
+    f "So this just isn't any good."
+    hide fiona
+    jump new_video
+
+label dead_video:
+    show harold
+    h "Either this video just got uploaded, or it's one of your videos."
+    h "Because no one seems to care about it."
+    h "You didn't even view it more than a few times yourself?"
+    hide harold
+    jump new_video
+    
+label trailer:
+    show boss
+    b "A game trailer, eh? What a terrible looking game."
+    b "Why would you want this on the compilation?"
+    b "The characters look like they were made in MS Paint and were held up on a laptop."
+    b "You have awful taste in games. Good music though. Everyone loves dubstep."
+    hide boss
+    jump new_video
+    
+label was_already_suggested:
+    show boss
+    b "Didn't we hear this earlier when all that noise blared out of your laptop?"
+    b "I didn't like it then and I don't like it now."
+    b "I'm personally going to fire whoever it was in this room that put it into your laptop."
+    hide boss
+    jump new_video
+    
+label is_3d:
+    show dddboss
+    ddd "This is in 3D!"
+    ddd "This is stupid, nobody likes 3D."
+    ddd "I would never be seen dead watching something in 3D."
+    ddd "I'll let you add the track though."
+    hide dddboss
+    jump new_video
+    
+label trending_hard:
+    show fiona
+    f "Got your finger on the pulse, eh?"
+    f "Ehhhhh?"
+    f "You better not have found this in the trending videos on Youtube."
+    f "You cheat."
+    hide fiona
     jump new_video
         
 label normal5:
+    show fiona
     f "Eh, I've heard better."
+    hide fiona
     jump new_video
     
 label normal4:
+    show harold
     h "This doesn't sound Swedish."
+    hide harold
     jump new_video
     
 label normal3:
+    show mia
     mi "This reminds me of that time we all got drunk at morning meeting."
+    hide mia
     jump new_video
     
 label normal2:
+    scene bg george
     ge "This makes me feel insecure."
+    scene bg meeting
     jump new_video
     
 label normal1:
+    show boss
     b "Thank you, [name]."
+    hide boss
     jump new_video
 
 label nothing_special_video:
