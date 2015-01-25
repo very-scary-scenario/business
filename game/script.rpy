@@ -40,8 +40,36 @@ image fiona = "fiona.png"
 image phone = "phone.png"
 
 # The game starts here.
-init python:
-    import youtube
+init:
+    $ meeting_timer_set = None
+
+    python:
+        import youtube
+
+        meeting_timer = None
+        meeting_timer_finished = None
+        current = -1
+
+        def long_timer():
+            if meeting_timer_set:
+                ui.timer(1.0, ui.callsinnewcontext("counter"), repeat=True)
+
+        config.overlay_functions.append(long_timer)
+
+        def showcount(st, at):
+            return Text("%.1f" % current, color="#fff", size=72), 0.5
+
+    image countdown = DynamicDisplayable(showcount)
+
+label counter:
+    hide counter
+    show counter
+    $ current -= 1
+    $ renpy.restart_interaction()
+    if current <= 0:
+        $ meeting_timer_set = False
+        jump timesup
+    return
 
 # The game starts here.
 label start:
@@ -68,6 +96,11 @@ label video:
 #How about a pop-up of the phone and some vibration noises?
 
 show phone at right
+
+$ current = 10
+$ ltimer_finished = "timesup"
+$ meeting_timer_set = True
+show countdown at Position(xalign=.1, yalign=.1)
 
 "Ungh..."
 
@@ -498,6 +531,8 @@ label pre_meeting_options:
     jump pre_meeting_options
     
     label timesup:
+    $ meetin_timer_set = False
+    $ current = 0
     show leslie
     s "Hey, you're going to be late for the meeting!"
     s "Get moving or it's your head on the block!"
@@ -505,6 +540,8 @@ label pre_meeting_options:
     jump meeting
     
     label meeting:
+        $ meetin_timer_set = False
+        $ current = 0
         scene bg premeeting
         with fade
         
