@@ -44,6 +44,7 @@ init:
     python:
         style.default.font = FontGroup().add('Lato-Regular.ttf', 0x0020, 0x2fff).add("batang.ttf", 0x0000, 0xffff)
         import youtube
+        playlist = youtube.Playlist()
         timers = []
         seconds_in_a_minute = 60.0
 
@@ -70,7 +71,6 @@ init:
             for timer in timers:
                 ui.remove(timer)
             ui.close()
-
 
 label start:
     jump new_video  # XXX should be the dream sequence (or at least awaken)
@@ -689,12 +689,12 @@ label meetingd101:
     jump new_video
 
 label new_video:
-    if youtube.playlist.is_complete():
+    if playlist.is_complete():
         "WE ARE DONE HERE"
         jump endgame
 
-    if youtube.playlist:
-        "Okay so so far we have:\n[youtube.playlist.formatted]"
+    if playlist:
+        "Okay so so far we have:\n[playlist.formatted]"
 
     menu:
         "There is a youtube video URL in my clipboard":
@@ -703,11 +703,11 @@ label new_video:
 label paste:
     $ video = youtube.paste()
     if video:
-        if video.is_already_in_playlist():
+        if video.is_already_in_playlist(playlist):
             "YOU SHIT WE HAVE THAT LLAREJIOAJREAEADY"
             jump new_video
 
-        $ youtube.playlist.append(video)
+        $ playlist = playlist.with_video(video)
 
         if video.is_gangnam_style():
             jump gangnam_style_video

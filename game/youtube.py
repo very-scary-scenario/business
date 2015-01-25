@@ -30,6 +30,9 @@ class Playlist(list):
     def is_complete(self):
         return len(self) >= 5
 
+    def with_video(self, video):
+        return Playlist(self + [video])
+
 
 class Video(object):
     @classmethod
@@ -68,7 +71,7 @@ class Video(object):
             'dislikes: {dislikes}'.format(**self.__dict__)
         )
 
-    def is_already_in_playlist(self):
+    def is_already_in_playlist(self, playlist):
         return self.id in [v.id for v in playlist]
 
     def is_psy(self):
@@ -89,9 +92,6 @@ def paste():
 
 def from_url(url):
     return Video.from_url(url)
-
-
-playlist = Playlist()
 
 
 if __name__ == '__main__':
