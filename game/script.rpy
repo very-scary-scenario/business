@@ -93,40 +93,40 @@ label video:
     else:
         "i dunno maybe our internet is broken that didn't work"
 
-#How about a pop-up of the phone and some vibration noises?
+    #How about a pop-up of the phone and some vibration noises?
 
-show phone at right
+    show phone at right
 
-$ start_meeting_timer()
+    $ start_meeting_timer()
 
-"Ungh..."
+    "Ungh..."
 
-hide phone
+    hide phone
 
-"..."
-    
-show phone at right
-    
-#How about another pop-up of the phone, some vibration noises and some bleepy bloops?
+    "..."
+        
+    show phone at right
+        
+    #How about another pop-up of the phone, some vibration noises and some bleepy bloops?
 
-"You remove the phone from your pocket, and through bleary eyes, try to make out the information on the screen."
-    
-#More bloopy bleeps
+    "You remove the phone from your pocket, and through bleary eyes, try to make out the information on the screen."
+        
+    #More bloopy bleeps
 
-"Looks like the boss has scheduled an urgent meeting. Nothing like a bit of notice when it comes to these things."
-"..."
+    "Looks like the boss has scheduled an urgent meeting. Nothing like a bit of notice when it comes to these things."
+    "..."
 
-hide phone
+    hide phone
 
-m "What... what the hell?"
-"You see, there's not much that tops an unexpected urgent meeting that takes place as soon as five minutes time, but this..."
-"This is right up there."
-m "Who... am I?"
-"Fortunately for you, there is at least some time to collect your thoughts and figure out who you are. Amnesia doesn't have to be the end of your career, you know."
-"."
-".."
-"..."
-"Well don't just stand there you fool, go and figure out who you are!"
+    m "What... what the hell?"
+    "You see, there's not much that tops an unexpected urgent meeting that takes place as soon as five minutes time, but this..."
+    "This is right up there."
+    m "Who... am I?"
+    "Fortunately for you, there is at least some time to collect your thoughts and figure out who you are. Amnesia doesn't have to be the end of your career, you know."
+    "."
+    ".."
+    "..."
+    "Well don't just stand there you fool, go and figure out who you are!"
     
 label pre_meeting_options:
     scene bg officedesk
@@ -151,9 +151,9 @@ label pre_meeting_options:
         "Waltz into the meeting. You've got this.":
             jump meeting
             
-    label search:
-        scene bg mydesk
-        with fade
+label search:
+    scene bg mydesk
+    with fade
     
     if desk_searched:
         m "I've already searched the important stuff. I should go elsewhere."
@@ -167,9 +167,9 @@ label pre_meeting_options:
     "No offense."
     jump searchmenu
     
-    label searchmenu:
-        scene bg mydesk
-        with fade
+label searchmenu:
+    scene bg mydesk
+    with fade
     
     menu:
         "Mess about aimlessly on the computer.":
@@ -181,14 +181,14 @@ label pre_meeting_options:
         "Check the stack of sheets with all the numbers on them.":
             jump numbersheets
         
-    label computer:
+label computer:
     "You stare at the computer screen, eyes drawn to the password field."
     "If this was a movie, you could probably guess what the password is."
     "Unfortunately you're not nearly as important, so there will be no miracles here."
     "Sorry about that."
     jump searchmenu
     
-    label drawers:
+label drawers:
     "You face a tough decision."
     "For the sake of saving face, you commit yourself to going through with it."
     "{i}It's so gross though oh my goooood.{/i}"
@@ -204,7 +204,7 @@ label pre_meeting_options:
     "These have definitely been worn before."
     jump searchmenu
        
-    label numbersheets:
+label numbersheets:
     $ desk_searched = True
     "There's a stack of sheets on your desk."
     "Perhaps it's because you were busy with something."
@@ -219,10 +219,10 @@ label pre_meeting_options:
     "But seriously if you're running a website I think you're soon to be replaced.."
     jump pre_meeting_options
     
-    label cubicle:
-        scene bg cubicle
-        with fade
-        show bdb
+label cubicle:
+    scene bg cubicle
+    with fade
+    show bdb
     
     if cubicleguy_talked:
         c "Dude, you should hurry along to that meeting. You don't want to piss off the boss."
@@ -238,18 +238,16 @@ label pre_meeting_options:
         "I'm alright, thanks. Yourself?":
             jump banana2
             
-    label banana:
-    
+label banana:
+
     c "Swinging low, man. Swinging low."
     jump banana3
         
-    label banana2:
-    
+label banana2:
     c "Not bad at all, thanks for asking."
     jump banana3
         
-    label banana3:
-    
+label banana3:
     c "So was there something you were after?"
     
     menu:
@@ -259,26 +257,24 @@ label pre_meeting_options:
         "Do you know anything about the meeting that's in a few minutes?":
             jump banana5
             
-    label banana4:
-    
+label banana4:
     $ cubicleguy_talked = True
     c "No offense bro, but you're not the kind of guy to crack jokes and it shows. Maybe don't do that in your meeting."
     m "S-sorry. I'll leave now."
     jump pre_meeting_options
             
-    label banana5:
-    
+label banana5:
     $ cubicleguy_talked = True
     c "Ah, sorry bud, I'm not in that meeting. Too high level and important for a character like me."
     c "I think I heard some people talking about it over in the kitchen, though."
     m "Thanks."
     jump pre_meeting_options
     
-    label kitchen:
-        scene bg kitchen
-        with fade
-        show barbara at left
-        show dave at right
+label kitchen:
+    scene bg kitchen
+    with fade
+    show barbara at left
+    show dave at right
     
     if kitchen_happy:
         ka "You should prepare for the meeting."
@@ -300,11 +296,11 @@ label pre_meeting_options:
     kb "Music to my ears. Speaking of which, are you going to be in the meeting?"
     ka "No, not today. It's far too important for someone like me. Like, job-on-the-line levels of important."
     
-    label kitchendialogue:
-        scene bg kitchen
-        with fade
-        show barbara at left
-        show dave at right
+label kitchendialogue:
+    scene bg kitchen
+    with fade
+    show barbara at left
+    show dave at right
     
     menu:
         "Good morning.":
@@ -319,8 +315,7 @@ label pre_meeting_options:
         "I am 99%% certain that I'm a cliché amnesia character, help me.":
             jump kitchen9
         
-    label kitchen2:
-    
+label kitchen2:
     ka "Good morning?"
     kb "2pm is a bit late for a good morning."
     ka "Actually, it's morning somewhere in the world."
@@ -336,8 +331,7 @@ label pre_meeting_options:
         "Why are you not invited to the meeting?":
             jump kitchen7
             
-    label kitchen3:
-        
+label kitchen3:
     ka "No, not us."
     kb "We're not high enough up the food chain."
     ka "It's for the best."
@@ -347,8 +341,7 @@ label pre_meeting_options:
         "It's for the best?":
             jump kitchen4
             
-    label kitchen4:
-    
+label kitchen4:
     ka "Of course it's for the best."
     kb "It's definitely for the best."
     ka "It's for the best."
@@ -357,8 +350,7 @@ label pre_meeting_options:
         "Why is it for the best?":
             jump kitchen5
     
-    label kitchen5:
-        
+label kitchen5:
     ka "Because the boss is going to be in the meeting."
     kb "And the boss knows best."
     ka "Always knows best."
@@ -372,7 +364,7 @@ label pre_meeting_options:
         "It's for the best, yes, I know that. But seriously, this repetitiveness is really grinding my gears and it's an obvious attempt to waste down the timer in an office sparsely packed with people to talk to. Hell, even I'm talking nonsense in an attempt to fill in the dead air here. But please, I'm pulling a blank and would love it if you could perhaps tell me why this meeting is so important. It's been a rough day.":
             jump kitchen6
     
-    label kitchen6:
+label kitchen6:
     $ kitchen_happy = True
     
     ka "Oh, well why didn't you say?"
@@ -387,7 +379,7 @@ label pre_meeting_options:
     kb "We're used to it."
     jump pre_meeting_options
     
-    label kitchen7:
+label kitchen7:
     $ kitchen_sad = True
     
     ka "You were eavesdropping on us?"
@@ -395,7 +387,7 @@ label pre_meeting_options:
     ka "Get out of our sight."
     jump pre_meeting_options
     
-    label kitchen8:
+label kitchen8:
     
     ka "Uhh..."
     kb "Do we know you?"
@@ -405,7 +397,7 @@ label pre_meeting_options:
     ka "Weird."
     jump kitchendialogue
     
-    label kitchen9:
+label kitchen9:
     
     ka "You what mate?"
     kb "It's at least imaginative."
@@ -415,9 +407,9 @@ label pre_meeting_options:
     ka "It's okay."
     jump kitchendialogue
     
-    label bossroom:
-        scene bg bossroom
-        with fade
+label bossroom:
+    scene bg bossroom
+    with fade
     
     if bossroom_searched:
         "You don't have the time to hide in here and spin around in the chair."
@@ -431,9 +423,9 @@ label pre_meeting_options:
     "But it gives you free reign of the boss' room. You'd hope that there would be something here that would tell you what's up."
     "{i}You'd hope.{/i}"
     
-    label inbossroom:
-        scene bg bossroom
-        with fade
+label inbossroom:
+    scene bg bossroom
+    with fade
     
     menu:
         "Search under the desk.":
@@ -445,8 +437,7 @@ label pre_meeting_options:
         "Look inside the book marked 'Bossing for Dummies'.":
             jump boss3
         
-    label boss1:
-    
+label boss1:
     "It's an interesting approach to take, that much is for sure."
     "I mean, we have paperwork all over the desk and various doodads around the room."
     "But you opt for looking under the desk."
@@ -457,7 +448,7 @@ label pre_meeting_options:
     "Never mind. It's just dust."
     jump inbossroom
     
-    label boss2:
+label boss2:
     $ bossroom_searched = True
     "Here it is. The true nature of the boss, finally revealed!"
     "This paperwork, while certainly interesting, isn't going to be much help with you."
@@ -469,18 +460,17 @@ label pre_meeting_options:
     "Glad to see the boss can get the hard work done when it really matters."
     jump pre_meeting_options
     
-    label boss3:
+label boss3:
+    "They sure do make these books for the dumbest subjects, huh."
+    "Fingers crossed this isn't how the boss got their job. Realistically? Roll a dice, I guess."
+    "Hold the phone, this book is annotated. There might be something interesting here."
+    "Hmm, looks like a few passages are highlighted. 'How to negotiate with business partners' and 'Budgeting 101' are quite vigorously circled."
+    "Let's just be happy knowing that they are at least trying to better themselves, one way or another."
+    jump inbossroom
     
-        "They sure do make these books for the dumbest subjects, huh."
-        "Fingers crossed this isn't how the boss got their job. Realistically? Roll a dice, I guess."
-        "Hold the phone, this book is annotated. There might be something interesting here."
-        "Hmm, looks like a few passages are highlighted. 'How to negotiate with business partners' and 'Budgeting 101' are quite vigorously circled."
-        "Let's just be happy knowing that they are at least trying to better themselves, one way or another."
-        jump inbossroom
-    
-    label reception:
-        scene bg reception
-        with fade
+label reception:
+    scene bg reception
+    with fade
     
     if reception_visited:
         r "I appreciate you coming to visit me again, but I'm not going to make you a coffee."
@@ -490,10 +480,10 @@ label pre_meeting_options:
     "I mean, I can't really see what they'll be able to do about your meeting predicament, but I guess it's worth a shot?"
     "If we hang around long enough we might get some free coffee."
     
-    label atreception:
-        scene bg reception
-        with fade
-        show beyonce
+label atreception:
+    scene bg reception
+    with fade
+    show beyonce
     
     menu:
         "Ask about the meeting.":
@@ -505,21 +495,20 @@ label pre_meeting_options:
         "Ask about how common it is for people to lose memories in the office.":
             jump reception3
             
-    label reception1:
-    
+label reception1:
     r "The meeting? I'm sorry, I'm afraid you're going to have to be more specific."
     r "There's just far too much going on here that it's difficult to keep track of."
     r "Well, difficult is perhaps a stretch. It's just no fun."
     jump atreception
     
-    label reception2: 
+label reception2: 
     r "The weather? Hang on, let me ask my Personal Assistant™ about that."
     r "Okay Goggles, tell me what the weather is like outside."
     g "ｄｉａｌｌｉｎｇ　ｇｒｅｇｏｒｙ"
     r "It's raining."
     jump atreception
     
-    label reception3: 
+label reception3: 
     $ reception_visited = True
     r "Well, I'm not sure about people losing their memories, but people sure seem to be forgetful about things. The boss specifically."
     r "I've had this prototype disc for the longest time and no one seems to be that bothered about it."
@@ -527,17 +516,17 @@ label pre_meeting_options:
     r "I'm rather partial to Mrs Knowles."
     jump pre_meeting_options
     
-    label timesup:
+label timesup:
     show leslie
     s "Hey, you're going to be late for the meeting!"
     s "Get moving or it's your head on the block!"
     hide leslie
     jump meeting
     
-    label meeting:
-        $ kill_meeting_timer()
-        scene bg premeeting
-        with fade
+label meeting:
+    $ kill_meeting_timer()
+    scene bg premeeting
+    with fade
         
     "I sure hope you're ready for this. I personally have no idea what you're getting into."
     "What really matters is that you tried. Or not."
@@ -545,10 +534,10 @@ label pre_meeting_options:
     "But no hard feelings, okay?"
     "Go get 'em, soldier."
     
-    label inmeeting:
-        scene bg meeting
-        with fade
-        show boss
+label inmeeting:
+    scene bg meeting
+    with fade
+    show boss
     
     b "Welcome, everyone. We'll start shortly, but let's give the stragglers a few more minutes to arrive before we do."
     
@@ -593,7 +582,5 @@ label pre_meeting_options:
     
     hide boss
     show david
-    
-    
     
     return
