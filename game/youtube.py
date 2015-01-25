@@ -104,7 +104,7 @@ def from_url(url):
 
 def open_youtube():
     for video_id in [
-        'usxrnYRZf_g&t=25s'
+        'usxrnYRZf_g&t=25s',
         'IkfuLA5GMCA',
         'eFO0Xo9TZ54',
         '_etl_qkelX0',
