@@ -144,6 +144,12 @@ class Video(object):
     def is_psy(self):
         return self.channel == 'officialpsy'
 
+    def is_really_long(self):
+        return self.channel == 60 * 60 * 3
+
+    def is_long(self):
+        return self.duration.seconds > 60 * 10
+
     def is_gangnam_style(self):
         return self.id == '9bZkp7q19f0'
 
