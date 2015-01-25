@@ -23,8 +23,9 @@ class Playlist(list):
     def length(self):
         return len(self)
 
-    def __str__(self):
-        return '\n'.join([' - {}'.format(v.title) for v in self])
+    @property
+    def formatted(self):
+        return u'\n'.join([u' - {}'.format(v.title) for v in self])
 
 
 class Video(object):
