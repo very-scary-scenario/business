@@ -689,6 +689,7 @@ label meetingd101:
     jump new_video
 
 label new_video:
+    $ youtube.open_youtube()
     if playlist.is_complete():
         "WE ARE DONE HERE"
         jump endgame

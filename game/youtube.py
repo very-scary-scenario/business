@@ -2,6 +2,7 @@
 
 from json import loads
 import re
+import webbrowser
 
 from aniso8601 import parse_duration
 import pyperclip
@@ -92,6 +93,10 @@ def paste():
 
 def from_url(url):
     return Video.from_url(url)
+
+
+def open_youtube():
+    webbrowser.open('https://youtube.com')
 
 
 if __name__ == '__main__':
