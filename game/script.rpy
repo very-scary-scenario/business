@@ -592,7 +592,12 @@ label new_video:
 label paste:
     $ video = youtube.paste()
     if video:
+        if video.is_already_in_playlist():
+            "YOU SHIT WE HAVE THAT LLAREJIOAJREAEADY"
+            jump new_video
+
         $ youtube.playlist.append(video)
+
         if video.is_short():
             jump short_video
         else:

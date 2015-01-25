@@ -57,6 +57,7 @@ class Video(object):
             return cls(item)
 
     def __init__(self, item):
+        self.id = item['id']
         self.title = item['snippet']['title']
         self.duration = parse_duration(item['contentDetails']['duration'])
         self.views = int(item['statistics']['viewCount'])
@@ -69,6 +70,9 @@ class Video(object):
             '{title}\n{duration}; views: {views}; likes: {likes}; '
             'dislikes: {dislikes}'.format(**self.__dict__)
         )
+
+    def is_already_in_playlist(self):
+        return self.id in [v.id for v in playlist]
 
     def is_short(self):
         return self.duration.seconds < 90
