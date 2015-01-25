@@ -135,6 +135,7 @@ class Video(object):
         self.title = item['snippet']['title']
         self.channel = item['snippet']['channelTitle']
         self.duration = parse_duration(item['contentDetails']['duration'])
+        self.dimension = item['contentDetails']['dimension']
         self.views = int(item['statistics']['viewCount'])
         self.comments = int(item['statistics']['commentCount'])
         self.likes = int(item['statistics']['likeCount'])
@@ -172,6 +173,9 @@ class Video(object):
 
     def was_already_suggested(self):
         return self.id in [i for i, s in SUGGESTED_VIDEOS]
+
+    def is_3d(self):
+        return self.dimension == '3d'
 
     # length
     def is_really_long(self):
