@@ -18,6 +18,8 @@ define f = Character('Fiona', color="#c8ffc8")
 define mi = Character('Mia', color="#c8ffc8")
 define l = Character('Leslie', color="#c8ffc8")
 define ge = Character('George', color="#c8ffc8")
+define sub = Character('Subordinate', color="#c8ffc8")
+define tut = Character('Hint', color="#c8ffc8")
 image bg mydesk = "mydesk.jpg"
 image bg officedesk = "officedesk.jpg"
 image bg cubicle = "cubicle.jpg"
@@ -27,6 +29,8 @@ image bg reception = "reception.jpg"
 image bg premeeting = "premeeting.jpg"
 image bg meeting = "meeting.jpg"
 image bg george = "trenchfoot.jpg"
+image bg war = "dream.png"
+image bg toilet = "toilet.jpg"
 image bg certificate = im.Scale("certificate.gif", 800, 600)
 image beyonce = "beyonce.png"
 image barbara = "barbara.png"
@@ -72,10 +76,37 @@ init:
             for timer in timers:
                 ui.remove(timer)
             ui.close()
+            
+        hands_washed_times = 0
+        
 
 label start:
-    jump awaken  # XXX should be the dream sequence (or at least awaken)
+    scene bg war
 
+    sub "Commander! Sir! Wake Up!"
+    m "..."
+    sub "Sir!"
+    m "Ungh..."
+    m "Wait, what's with all the tanks?"
+    sub "We've been caught in a meeting engagement with a German mechanised company, sir!"
+    m "What!? Again?"
+    sub "We've come into contact with the lead units of the enemy formation on the crossroads to Kelberg!"
+    m "{i}What's going on here?{/i}"
+    sub "Enemy forces are reported are to consist of three infantry squads, a single Sd. Kfz. 234 IFV, and a single Panzer IV."
+    sub "The Germans have managed to take advantage of the situation by seizing the nearby hill and firing down upon our forces."
+    sub "Our lead platoon is taking a beating. Lt. Hawkings has taken heavy casualties and is in desperate need of reinforcements!"
+    sub "If we don't turn this around, the cohesion of the company and the whole damn battalion's advance is in jeopardy."
+    sub "Thank God you convinced Lt. Col. Jefferson to give us that extra attachment of an armoured platoon."
+    sub "Their firepower and manoeuvrability will allow us to regain the initiative and force the Germans to disengage."
+    tut "{color=#3366CC}Tutorial Start.{/color}"
+    tut "{color=#3366CC}Click on one of the tanks to select it.{/color}"
+    
+    hide text with dissolve
+    $ renpy.pause()
+    scene black with dissolve
+
+    jump awaken
+    
 label awaken:
     $ cubicleguy_talked = False
     $ kitchen_happy = False
@@ -140,6 +171,9 @@ label pre_meeting_options:
 
         "Ask the cheerful-looking person on the reception desk.":
             jump reception
+            
+        "Go for a poo.":
+            jump toilet
 
         "Waltz into the meeting. You've got this.":
             jump meeting
@@ -508,6 +542,66 @@ label reception3:
     r "Between you and me, I'm also not in a rush to hand it back. It's got some great tunes on it."
     r "I'm rather partial to Mrs Knowles."
     jump pre_meeting_options
+    
+label toilet:
+    scene bg toilet
+    with fade
+
+    "Welcome to the smelliest, coldest and possibly cleanest area of the office; the toilets."
+    "I like to call it the Dank Stank."
+    "If you've genuinely come to look for clues, you might leave disappointed."
+    "Actually, you're right to keep an open mind. You might be a cleaner and you could find your work permit inside a cistern."
+    "You could just hide here. For five minutes, anyway."
+
+label attoilet:
+    scene bg toilet
+    with fade
+
+    menu:
+        "Flush all your hopes and dreams down the toilet.":
+            jump toilet1
+
+        "Wash your hands.":
+            jump toilet2
+
+        "Have a bit of a sit down.":
+            jump toilet3
+
+label toilet1:
+    "*FLUSH*."
+    "Well, there they go..."
+    jump attoilet
+
+label toilet2:
+    $ hands_washed_times += 1
+    "*SLOSH*."
+    if hands_washed_times == 1:
+        "You have washed your hands once."
+    else:
+        "You have washed your hands [hands_washed_times] times."
+    menu:
+        "Yes.":
+            "You need to stop trying waste time...."
+            jump attoilet
+
+        "Wash Hands.":
+            "Maybe this isn't the best use fo your time?"
+            jump toilet2
+
+label toilet3:
+    "As much as you might like to, you can't just spend five minutes in the toilets."
+    "People might need them."
+    "For poopin'."
+    "There are a couple of magazines here."
+    "Man this are gross...."
+    menu:
+        "Pick-up Smash Hits.":
+            "Relevant statement about music"
+            jump pre_meeting_options
+
+        "Pick-up Adventure Fishing.":
+            "Chris - Add funny line here"
+            jump pre_meeting_options
 
 label timesup:
     show leslie
@@ -767,7 +861,7 @@ label meeting_dec_two:
             jump meetingd2o5
 
 label meetingd2o1:
-    show bg george
+    scene bg george
     g "Classical music?"
     show bg meeting
     show fiona
@@ -862,7 +956,7 @@ label meetingpart3:
     b "Ostentatious! Exorbitant! Profligate!"
     b "c-r-a-z-y."
     b "Does anyone have any ideas?"
-    show bg george
+    scene bg george
     show david at left
     show harold at left
     show fiona at right
@@ -881,11 +975,17 @@ label meetingpart3:
     b "As your boss, I must apologise for that."
     b "You have final say in all of this. We just need to hear the songs you'd like to feature."
     b "Make sure you have each Youtube URL copied. I'm a simple man and I'm easily confused, so that's the best way for us to do this."
+    scene bg meeting
+    hide david
+    hide harold
+    hide fiona
+    hide mia
+    hide leslie 
     jump new_video
 
 label new_video:
     if playlist.is_complete():
-        "WE ARE DONE HERE"
+        g "ｔｈａｎｋ　ｙｏｕ　ｆｏｒ　ｙｏｕｒ　ｃｏｏｐｅｒａｔｉｏｎ"
         jump endgame
 
     if playlist:
@@ -901,10 +1001,6 @@ label new_video:
             h "Something foreign. For example, something Swedish. I like Sweden:"
         if playlist.remaining == 1:
             ge "Last track? Please pick something by Cliff Richard."
-        
-        
-        
-            
 
     menu:
         "I solemnly swear that I have the correct Youtube URL copied already.":
@@ -932,25 +1028,45 @@ label paste:
         jump new_video
 
 label gangnam_style_video:
-    "oh just fuck off"
+    b "OPPA GANGNAM FUCK YOU."
     jump new_video
 
 label psy_video:
-    "look i know you think you're a proper hipster"
-    "but that shit just doesn't fly here, we all hear this shit all god damn day on the fucking radio one radio show"
+    b "I'm sorry if you were being serious, but please don't play that around here any more."
+    b "No one plays PSY around here and lives to tell the tale."
     jump new_video
 
 label short_video:
-    "FUCK MAN THAT IS WAY TOO SHORT"
+    b "That song is a bit short, isn't it? People will feel robbed if we put that on the compilation."
+    b "Well... more so."
+    jump new_video
+        
+label normal5:
+    f "Eh, I've heard better."
+    jump new_video
+    
+label normal4:
+    h "This doesn't sound Swedish."
+    jump new_video
+    
+label normal3:
+    mi "This reminds me of that time we all got drunk at morning meeting."
+    jump new_video
+    
+label normal2:
+    ge "This makes me feel insecure."
+    jump new_video
+    
+label normal1:
+    b "Thank you, [name]."
     jump new_video
 
 label nothing_special_video:
-    "there is nothing special about this"
-    jump new_video
+    $ ui.jumps(["normal1", "normal2", "normal3", "normal4", "normal5"][playlist.remaining])()
 
 label endgame:
     scene bg certificate
     with fade
 
-    $ centered(u"{color=#000000}{size=+10}~CONGRATULATIONS~{/size}\nYou and your team assembled a collection of soulless music and it brought no relief the the short, meaningless existences of anyone who heard it.\n\nGaze upon your creation and weep.\n\n[playlist.certificate_text]{/color}")
+    $ centered(u"{color=#000000}{size=+10}~CONGRATULATIONS~{/size}\nYou and your team assembled a collection of soulless music and it brought no relief to the short, meaningless existences of anyone who heard it.\n\nGaze upon your creation and weep.\n\n[playlist.certificate_text]{/color}")
     $ centered(u"{color=#000000}[playlist.stats]{/color}")
