@@ -655,26 +655,100 @@ label meeting_dec_one:
         "I have three proposals to share regarding our next big client.":
             jump meetingd1o5
             
-label meetingd101:
+label meetingd1o1:
     show boss
     b "[name], it's unlike you to be making jokes. Is something the matter?"
     b "It's basically common knowledge that we're not having that meeting until Monday when everyone is in the office."
     hide boss
     jump meeting_dec_one
     
-label meetingd101:
-    show harold left
+label meetingd1o2:
+    show harold at left
     h "Business strategy?"
-    show mia right
+    show mia at right
     mi "Have we ever had a business strategy?"
-    hide harold
-    show boss left
+    show boss
     b "I have a dartboard."
     hide boss
     hide mia
+    hide harold
     jump meeting_dec_one
     
+label meetingd1o3:
+    show david
+    d "Amnesia is a deficit in memory caused by brain damage, disease, or psychological trauma."
+    d "Amnesia can also be caused temporarily by the use of various sedatives and hypnotic drugs."
+    d "Essentially, amnesia is loss of memory. The memory can be either wholly or partially lost due to the extent of damage that was caused."
+    d "There are two main types of amnesia:"
+    hide david
+    show david at left
+    show boss at right
+    b "David?"
+    d "Retrograde amnesia and anterograde amnesia."
+    b "David!"
+    d "Yes?"
+    b "You're doing it again."
+    d "Sorry boss."
+    hide david
+    hide boss
+    jump meeting_dec_one
+    
+label meetingd1o4:
+    show david at left
+    show harold at right
+    d "Hey, that's not a bad idea."
+    h "Not bad at all! That's definitely at least an idea!"
+    hide david
+    hide harold
+    jump meeting_dec_one
+    
+label meetingd1o5:
+    show boss
+    b "Three proposals?"
+    m "Yes sir."
+    b "Three fully written proposals?"
+    m "Yes sir."
+    b "Can I see them?"
+    m "No sir."
+    b "We don't write proposals here."
+    m "No sir."
+    b "We ARE the law."
+    m "Yes sir."
+    hide boss
+    jump meeting_dec_one
+    
+label meetingpart2
+    show boss
+    b "Order! Order in the room!"
+    b "Now, we've made it past what it said on the meeting invite I sent to your phones."
+    show mia at left
+    mi "It said that?"
+    show fiona at right
+    f "Yeah, you just had to scroll down a bit."
+    hide mia
+    hide fiona
+    b "Anyway, that's all well and good, but there's so much that goes on here that it's hard to keep track of what album we're talking about."
+    b "[Name], care to fill us in?"
+    
+label meeting_dec_two:
+    
+    menu:
+        "Sure. This is regarding the classical music compilation we're currently working on.":
+            jump meetingd2o1
 
+        "This is for the sweet summer jams mixtape I'm working on.":
+            jump meetingd2o2
+
+        "No problem, it's for the latest Beyoncé album.":
+            jump meetingd2o3
+            
+        "The company photo album. We need some backing music for the official presentation.":
+            jump meetingd2o4
+        
+        "It's for our yearly offering of the latest and greatest pop sensations.":
+            jump meetingd2o5
+
+    
     
     
     # guff below
