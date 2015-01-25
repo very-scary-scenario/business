@@ -585,6 +585,7 @@ label inmeeting:
 label new_video:
     if youtube.playlist:
         "Okay so so far we have:\n[youtube.playlist.formatted]"
+
     menu:
         "There is a youtube video URL in my clipboard":
             jump paste
@@ -604,6 +605,7 @@ label paste:
             jump nothing_special_video
     else:
         "i dunno maybe our internet is broken that didn't work"
+        jump new_video
 
 label short_video:
     "FUCK MAN THAT IS WAY TOO SHORT"
