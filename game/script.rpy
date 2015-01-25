@@ -749,7 +749,92 @@ label meeting_dec_two:
         "It's for our yearly offering of the latest and greatest pop sensations.":
             jump meetingd2o5
 
+label meetingd2o1:
+    show bg george
+    g "Classical music?"
+    show bg meeting
+    show fiona
+    f "What counts as classical? Like, early Bieber?"
+    hide fiona
+    show fiona at left
+    show boss at right
+    b "What? No, of course not! Idiot!"
+    b "We're talking {i}at least{/i} 1994."
+    hide boss
+    hide fiona
+    jump meeting_dec_two
     
+label meetingd2o2:
+    show david
+    d "Ah, the healing properties of the summer jam."
+    d "A frankly understated pleasure."
+    d "The highlight of many a caravan trip."
+    d "Bliss."
+    hide david
+    show boss
+    b "It wasn't a summer jam mixtape."
+    b "Sorry."
+    hide boss
+    jump meeting_dec_two
+    
+label meetingd2o3:
+    show mia
+    mi "OH MY GOD."
+    hide mia
+    show mia at left
+    mi "OH."
+    hide mia
+    show mia at right
+    mi "MY."
+    hide mia
+    show mia
+    mi "GOD."
+    mi "A NEW BEYONCÉ ALBUM!"
+    "{i}incomprehensible screaming.{/i}"
+    mi "As Field Marshall of the Beyontourage, I must leave the meeting and prepare the daily newsletter!"
+    hide mia
+    show mia at right
+    show boss at left
+    b "[name], it wasn't funny the last time you did this."
+    hide mia
+    hide boss
+    show mia at right
+    show boss
+    show leslie at left
+    l "DID SOMEONE SAY NEW BEYONCÉ ALBUM?"
+    b "Who are you?"
+    mi "NEW BEYONCÉ ALBUM!"
+    "{i}incomprehensible screaming: the reckoning.{/i}"
+    m "Sorry boss."
+    b "You better be."
+    hide mia
+    hide boss
+    hide leslie
+    jump meeting_dec_two
+    
+label meetingd2o4:
+    show david at left
+    show harold at right
+    d "Hey, that's not a bad idea."
+    h "Not bad at all! That's definitely at least an idea!"
+    hide david
+    hide harold
+    jump meeting_dec_two
+    
+label meetingd2o5:
+    show boss
+    b "Three proposals?"
+    m "Yes sir."
+    b "Three fully written proposals?"
+    m "Yes sir."
+    b "Can I see them?"
+    m "No sir."
+    b "We don't write proposals here."
+    m "No sir."
+    b "We ARE the law."
+    m "Yes sir."
+    hide boss
+    jump meeting_dec_two
     
     
     # guff below
