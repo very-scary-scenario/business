@@ -73,7 +73,7 @@ init:
             ui.close()
 
 label start:
-    jump new_video  # XXX should be the dream sequence (or at least awaken)
+    jump awaken  # XXX should be the dream sequence (or at least awaken)
 
 label awaken:
     $ cubicleguy_talked = False
@@ -83,6 +83,7 @@ label awaken:
     $ bossroom_searched = False
     $ reception_visited = False
     scene bg mydesk
+    play music "shitty vn music.ogg"
 
     #How about a pop-up of the phone and some vibration noises?
 
@@ -752,6 +753,11 @@ label meeting_dec_two:
     
     
     # guff below
+label track_selection:
+    "WILL SOMEONE SHUT THAT BLOODY RACKET OFF"
+    stop music
+
+    "ALSO GIVE ME YOUR COMPUTER"
 
     $ youtube.open_youtube()
     jump new_video
