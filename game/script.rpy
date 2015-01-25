@@ -42,7 +42,7 @@ image david = "david.png"
 init:
     $ meeting_timer_set = None
     python:
-        style.default.font = FontGroup().add('Lato-Regular.ttf', 0x0020, 0x007f).add("batang.ttf", 0x0000, 0xffff)
+        style.default.font = FontGroup().add('Lato-Regular.ttf', 0x0020, 0x2fff).add("batang.ttf", 0x0000, 0xffff)
         import youtube
         timers = []
         seconds_in_a_minute = 60.0
@@ -73,7 +73,7 @@ init:
 
 
 label start:
-    jump meeting  # XXX should be the dream sequence (or at least awaken)
+    jump awaken  # XXX should be the dream sequence (or at least awaken)
 
 label awaken:
     $ cubicleguy_talked = False
