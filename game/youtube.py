@@ -52,6 +52,7 @@ class Video(object):
     def __init__(self, item):
         self.id = item['id']
         self.title = item['snippet']['title']
+        self.channel = item['snippet']['channelTitle']
         self.duration = parse_duration(item['contentDetails']['duration'])
         self.views = int(item['statistics']['viewCount'])
         self.comments = int(item['statistics']['commentCount'])
@@ -66,6 +67,9 @@ class Video(object):
 
     def is_already_in_playlist(self):
         return self.id in [v.id for v in playlist]
+
+    def is_psy(self):
+        return self.channel == 'officialpsy'
 
     def is_gangnam_style(self):
         return self.id == '9bZkp7q19f0'

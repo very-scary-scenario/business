@@ -601,6 +601,8 @@ label paste:
 
         if video.is_gangnam_style():
             jump gangnam_style_video
+        if video.is_psy():
+            jump psy_video
         if video.is_short():
             jump short_video
         else:
@@ -611,6 +613,11 @@ label paste:
 
 label gangnam_style_video:
     "oh just fuck off"
+    jump new_video
+
+label psy_video:
+    "look i know you think you're a proper hipster"
+    "but that shit just doesn't fly here, we all hear this shit all god damn day on the fucking radio one radio show"
     jump new_video
 
 label short_video:
