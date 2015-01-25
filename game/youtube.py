@@ -144,20 +144,23 @@ class Video(object):
     def popularity(self):
         return self.likes / float(self.likes + self.dislikes)
 
-    # ============================ #
-    # THINGS TO WRITE THINGS ABOUT #
-    # ============================ #
     def is_already_in_playlist(self, playlist):
         return self.id in [v.id for v in playlist]
 
-    def is_bass_boost(self):
-        return 'bass boost' in self.title.lower()
+    # ============================ #
+    # THINGS TO WRITE THINGS ABOUT #
+    # ============================ #
+    def is_the_trailer(self):
+        return self.id == '5wwRICuoB-o'
 
     def is_gangnam_style(self):
         return self.id == '9bZkp7q19f0'
 
     def is_psy(self):
         return self.channel == 'officialpsy'
+
+    def is_bass_boost(self):
+        return 'bass boost' in self.title.lower()
 
     # length
     def is_really_long(self):
