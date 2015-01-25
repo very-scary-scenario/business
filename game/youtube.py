@@ -31,7 +31,7 @@ class Video(object):
             connection = HTTPTLSConnection(google_domain, 443)
             connection.request('GET', url_fmt.format(id=video_id))
             result = loads(connection.getresponse().read())
-            item = result['item'][0]
+            item = result['items'][0]
         except:
             return
         else:
@@ -55,7 +55,7 @@ class Video(object):
 def paste():
     clipboard = pyperclip.paste()
     if clipboard:
-        return from_url()
+        return from_url(clipboard)
 
 
 def from_url(url):
