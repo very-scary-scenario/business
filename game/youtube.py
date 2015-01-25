@@ -107,6 +107,7 @@ def open_youtube():
         'usxrnYRZf_g&t=25s'
         'IkfuLA5GMCA',
         'eFO0Xo9TZ54',
+        '_etl_qkelX0',
     ]:
         webbrowser.open('https://youtube.com/watch?v={0}'.format(video_id))
 
