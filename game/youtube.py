@@ -104,11 +104,8 @@ def from_url(url):
 
 def open_youtube():
     for video_id in [
-        'gfCTLDKzWA8',
-        'EeJF161wRoM',
-        'EBtd3H3Qdi8',
-        '8N_cO-XkJpM',
-        'XpY4KMBs2Z0',
+        'IkfuLA5GMCA',
+        'eFO0Xo9TZ54',
     ]:
         webbrowser.open('https://youtu.be/{0}'.format(video_id))
 
