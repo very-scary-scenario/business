@@ -717,7 +717,7 @@ label meetingd1o5:
     hide boss
     jump meeting_dec_one
     
-label meetingpart2
+label meetingpart2:
     show boss
     b "Order! Order in the room!"
     b "Now, we've made it past what it said on the meeting invite I sent to your phones."
