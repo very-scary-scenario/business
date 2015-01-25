@@ -27,7 +27,6 @@ image bg reception = "reception.jpg"
 image bg premeeting = "premeeting.jpg"
 image bg meeting = "meeting.jpg"
 image bg george = "trenchfoot.jpg"
-image nick = "nick.png"
 image beyonce = "beyonce.png"
 image barbara = "barbara.png"
 image bdb = "bdb.png"
@@ -38,6 +37,7 @@ image boss = "boss.png"
 image dave = "dave.png"
 image fiona = "fiona.png"
 image phone = "phone.png"
+image david = "david.png"
 
 init:
     $ meeting_timer_set = None
@@ -73,7 +73,7 @@ init:
 
 
 label start:
-    jump new_video  # XXX should be the dream sequence (or at least awaken)
+    jump meeting  # XXX should be the dream sequence (or at least awaken)
 
 label awaken:
     $ cubicleguy_talked = False
@@ -573,6 +573,87 @@ label inmeeting:
 
     hide boss
     show david
+    with fade
+    
+    d "Hi, I'm David. You might remember me from the Christmas party. I work in sales."
+    
+    hide david
+    show harold
+    with fade
+    
+    h "I'm Harold. I work as part of the marketing team."
+    
+    hide harold
+    show fiona
+    with fade
+    
+    f "My name's Fiona. I'm with the sales and marketing team."
+    
+    hide fiona
+    scene bg george
+    
+    ge "Hey, it's George!"
+    "~Morning George~"
+    ge "I'm in the retail team."
+    
+    scene bg meeting
+    with fade
+    
+    $ name = renpy.input("Looks like you're up. I hope you know who you are by now.")
+    
+    m "Hello, my name is [name], I'm uhh..."
+    
+    show boss
+    with fade
+    
+    b "Don't worry, we all know who you are."
+    b "Right, at this point we should get down to business-"
+    
+    hide boss
+    scene bg george
+    show mia
+    
+    mi "S-sorry I'm late! Good heavens, I'm not normally this late. I'm so, so sorry!"
+    
+    hide mia 
+    scene bg meeting
+    show boss at left
+    show mia at right
+    
+    b "Don't worry, Mia, it happens to the best of us."
+    mi "Thank you, boss!"
+    b "We'll talk about this later. Bring your things."
+    mi "O-okay..."
+    
+    hide mia
+    hide boss
+    scene bg meeting
+    with fade
+    show boss
+    
+    b "As I was saying, I'm now going to hand the meeting over to [name]. It was you who suggested we hold this meeting, anyway."
+    m "R-right. Yes. I did say that, huh."
+    b "You do remember what we're here to talk about, right?"
+    
+label meeting_dec_one:
+    
+    menu:
+        "Yes. We're here to discuss the downright terrifying levels of body odour in the office.":
+            jump meetingd1o1
+
+        "We're here to discuss the business strategy running through FY15.":
+            jump meetingd1o2
+
+        "I wanted us to debate theories and phenomena that would cause a grown human to lose their memories.":
+            jump meetingd1o3
+            
+        "We need to urgently discuss the feature tracks for our latest compilation.":
+            jump meetingd1o4
+        
+        "I have three proposals to share regarding our next big client.":
+            jump meetingd1o5
+    
+    # guff below
 
     $ video = youtube.paste()
     if video:
