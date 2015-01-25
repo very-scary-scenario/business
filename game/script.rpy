@@ -94,7 +94,7 @@ label start:
     m "What!? Again?"
     sub "We've come into contact with the lead units of the enemy formation on the crossroads to Kelberg!"
     m "{i}What's going on here?{/i}"
-    sub "Enemy forces are reported are to consist of three infantry squads, a single Sd. Kfz. 234 IFV, and a single Panzer IV."
+    sub "Enemy forces are reported to consist of three infantry squads, a single Sd. Kfz. 234 IFV, and a single Panzer IV."
     sub "The Germans have managed to take advantage of the situation by seizing the nearby hill and firing down upon our forces."
     sub "Our lead platoon is taking a beating. Lt. Hawkings has taken heavy casualties and is in desperate need of reinforcements!"
     sub "If we don't turn this around, the cohesion of the company and the whole damn battalion's advance is in jeopardy."
@@ -698,7 +698,7 @@ label inmeeting:
     show boss
 
     b "Okay. Well, in the interests of time, let's kick off the meeting."
-    b "As there are a lot of unfamilar faces here in the room, I'd like us all to introduce ourselves."
+    b "As there are a lot of unfamiliar faces here in the room, I'd like us all to introduce ourselves."
     b "Well, you all know who I am, so let's go clockwise from me."
 
     hide boss
@@ -1002,7 +1002,7 @@ label meetingpart3:
     $ youtube.open_youtube()
     b "As your boss, I must apologise for that."
     b "You have final say in all of this. We just need to hear the songs you'd like to feature."
-    b "Make sure you have each Youtube URL copied. I'm a simple man and I'm easily confused, so that's the best way for us to do this."
+    b "Make sure you have each YouTube URL copied. I'm a simple man and I'm easily confused, so that's the best way for us to do this."
     scene bg meeting
     hide david
     hide harold
@@ -1031,7 +1031,7 @@ label new_video:
             ge "Last track? Please pick something by Cliff Richard."
 
     menu:
-        "I solemnly swear that I have the correct Youtube URL copied already.":
+        "I solemnly swear that I have the correct YouTube URL copied already.":
             jump paste
 
 label paste:
@@ -1098,7 +1098,7 @@ label psy_video:
 label really_short_video:
     show boss
     b "Did anything even play just then? Did I blink and miss it?"
-    b "Actually, that sounds rather edgey. Like you're making a statement. I like that."
+    b "Actually, that sounds rather edgy. Like you're making a statement. I like that."
     hide boss
     jump new_video
 
@@ -1182,7 +1182,7 @@ label trending_hard:
     show fiona
     f "Got your finger on the pulse, eh?"
     f "Ehhhhh?"
-    f "You better not have found this in the trending videos on Youtube."
+    f "You better not have found this in the trending videos on YouTube."
     f "You cheat."
     hide fiona
     jump new_video
