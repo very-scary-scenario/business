@@ -28,7 +28,7 @@ init -1 python hide:
 
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
-    config.name = "Why am I in this meeting"
+    config.name = "Now That's What I Call Business!"
     config.version = "0.0"
 
     #########################################
