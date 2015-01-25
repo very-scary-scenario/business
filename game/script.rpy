@@ -584,7 +584,7 @@ label inmeeting:
 
 label new_video:
     if youtube.playlist:
-        "Okay so so far we have [youtube.playlist]"
+        "Okay so so far we have:\n[youtube.playlist]"
     menu:
         "There is a youtube video URL in my clipboard":
             jump paste

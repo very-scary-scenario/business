@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from json import loads
 import re
 
@@ -22,17 +24,7 @@ class Playlist(list):
         return len(self)
 
     def __str__(self):
-        if len(self) > 1:
-            return (
-                u'{}, and {}'.format(
-                    u', '.join([v.title for v in self[:-1]]),
-                    self[-1].title,
-                )
-            )
-        elif len(self) == 1:
-            return self[0].title
-        else:
-            return 'nothing'
+        return '\n'.join([' - {}'.format(v.title) for v in self])
 
 
 class Video(object):
