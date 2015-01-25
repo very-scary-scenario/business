@@ -73,7 +73,7 @@ init:
             ui.close()
 
 label start:
-    jump track_selection  # XXX should be the dream sequence (or at least awaken)
+    jump awaken  # XXX should be the dream sequence (or at least awaken)
 
 label awaken:
     $ cubicleguy_talked = False
@@ -552,6 +552,17 @@ label inmeeting:
     ge "Hey, it's George!"
     "~Morning George~"
     ge "I'm dialing in from my car so the call quality might be hit and miss."
+    show boss at left
+    b "Sorry George, just a second."
+    b "Would someone turn off this god awful music?"
+    show david at right
+    d "Boss, I'm pretty sure that's coming from your phone."
+    b "...oh."
+    stop music
+    b "Please continue, George."
+    hide boss
+    hide david
+    ge "I was finished talking. Sorry boss."    
 
     scene bg meeting
     show boss
@@ -562,7 +573,7 @@ label inmeeting:
     show boss at left
     show fiona at right
 
-    mi "Oh she's definitely in the office. I've seen her."
+    f "Oh she's definitely in the office. I've seen her."
 
     hide fiona
     hide boss
@@ -850,16 +861,25 @@ label meetingpart3:
     b "Ostentatious! Exorbitant! Profligate!"
     b "c-r-a-z-y."
     b "Does anyone have any ideas?"
-    
-    
-    # guff below
-label track_selection:
-    "WILL SOMEONE SHUT THAT BLOODY RACKET OFF"
-    stop music
-
-    "ALSO GIVE ME YOUR COMPUTER"
-
+    show bg george
+    show david at left
+    show harold at left
+    show fiona at right
+    show mia at right
+    show leslie 
+    "OIFOIJREWOJOIHWEFOIHEORGFPOIHJOIFDGPOPWROIHWEOIHTOIHEHGFHOIH"
+    h "There's this one track from Sweden that I think will go great-"
+    mi "We DEFINITELY need another Beyoncé track-"
+    l "DID SOMEONE SAY BEYONCÉ?"
+    b "Who {i}are{/i} you?"
+    g "Can someone play the Cliff Richard song for [name] so he knows-"
+    mi "Pass me your laptop I want to play you a song."
+    b "No way, I'm first."
+    l "No! Give it {i}back{/i}."
     $ youtube.open_youtube()
+    b "As your boss, I must apologise for that."
+    b "You have final say in all of this. We just need to hear the songs you'd like to feature."
+    b "Make sure you have each Youtube URL copied. I'm a simple man and I'm easily confused, so that's the best way for us to do this."
     jump new_video
 
 label new_video:
@@ -870,20 +890,30 @@ label new_video:
     if playlist:
         "Okay so we have:\n[playlist.formatted]"
 
-        if playlist.remaining != 1:
-            "We need [playlist.remaining] more tracks."
-        else:
-            "Only one left!"
+        if playlist.remaining == 5:
+            b "So for starters, let's have something a bit effervescent:"
+        if playlist.remaining == 4:
+            d "Anything that isn't Beyoncé:"
+        if playlist.remaining == 3:
+            f "Something that isn't the same old shit:"
+        if playlist.remaining == 2:
+            h "Something foreign. For example, something Swedish. I like Sweden:"
+        if playlist.remaining == 1:
+            ge "Last track? Please pick something by Cliff Richard."
+        
+        
+        
+            
 
     menu:
-        "There is a youtube video URL in my clipboard":
+        "I solemnly swear that I have the correct Youtube URL copied already.":
             jump paste
 
 label paste:
     $ video = youtube.paste()
     if video:
         if video.is_already_in_playlist(playlist):
-            "YOU SHIT WE HAVE THAT LLAREJIOAJREAEADY"
+            b "Hey now, you've played this one already (and I didn't think it was that good, anyway)."
             jump new_video
 
         $ playlist = playlist.with_video(video)
@@ -897,7 +927,7 @@ label paste:
         else:
             jump nothing_special_video
     else:
-        "i dunno maybe our internet is broken that didn't work"
+        b "You, uhh, might want to try that again. Something broke and I'm too lazy to move from my seat and find out why."
         jump new_video
 
 label gangnam_style_video:
