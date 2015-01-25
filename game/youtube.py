@@ -26,7 +26,7 @@ SUGGESTED_VIDEOS = [
     ('usxrnYRZf_g', '&t=25s'),
     ('IkfuLA5GMCA', ''),
     ('eFO0Xo9TZ54', ''),
-    ('_etl_qkelx0', ''),
+    ('_etl_qkelX0', ''),
     ('2PBeKzVhWHY', ''),
 ]
 
