@@ -40,6 +40,10 @@ class Playlist(list):
         return u'\n'.join([u'{}. {}'.format(i+1, v.title)
                            for i, v in enumerate(self)])
 
+    @property
+    def stats(self):
+        return 'YOU SOLD FORTY BILLION COPIES'
+
     def is_complete(self):
         return len(self) >= PLAYLIST_LENGTH
 
