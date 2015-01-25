@@ -22,6 +22,13 @@ url_fmt = (
 
 PLAYLIST_LENGTH = 5
 
+SUGGESTED_VIDEOS = [
+    ('usxrnYRZf_g', '&t=25s'),
+    ('IkfuLA5GMCA', ''),
+    ('eFO0Xo9TZ54', ''),
+    ('_etl_qkelX0', ''),
+]
+
 
 class Playlist(list):
     @property
@@ -162,6 +169,9 @@ class Video(object):
     def is_bass_boost(self):
         return 'bass boost' in self.title.lower()
 
+    def was_already_suggested(self):
+        return self.id in [i for i, s in SUGGESTED_VIDEOS]
+
     # length
     def is_really_long(self):
         return self.channel == 60 * 60 * 3
@@ -236,13 +246,9 @@ def from_url(url):
 
 
 def open_youtube():
-    for video_id in [
-        'usxrnYRZf_g&t=25s',
-        'IkfuLA5GMCA',
-        'eFO0Xo9TZ54',
-        '_etl_qkelX0',
-    ]:
-        webbrowser.open('https://youtube.com/watch?v={0}'.format(video_id))
+    for video_id, suffix in SUGGESTED_VIDEOS:
+        webbrowser.open('https://youtube.com/watch?v={0}{1}'.format(
+            video_id, suffix))
 
 
 if __name__ == '__main__':
