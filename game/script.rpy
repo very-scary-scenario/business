@@ -583,6 +583,8 @@ label inmeeting:
     jump new_video
 
 label new_video:
+    if youtube.playlist:
+        "Okay so so far we have [youtube.playlist]"
     menu:
         "There is a youtube video URL in my clipboard":
             jump paste
@@ -590,6 +592,7 @@ label new_video:
 label paste:
     $ video = youtube.paste()
     if video:
+        $ youtube.playlist.append(video)
         if video.is_short():
             jump short_video
         else:

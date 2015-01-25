@@ -16,6 +16,25 @@ url_fmt = (
 )
 
 
+class Playlist(list):
+    @property
+    def length(self):
+        return len(self)
+
+    def __str__(self):
+        if len(self) > 1:
+            return (
+                u'{}, and {}'.format(
+                    u', '.join([v.title for v in self[:-1]]),
+                    self[-1].title,
+                )
+            )
+        elif len(self) == 1:
+            return self[0].title
+        else:
+            return 'nothing'
+
+
 class Video(object):
     @classmethod
     def from_url(cls, url):
@@ -63,6 +82,9 @@ def paste():
 
 def from_url(url):
     return Video.from_url(url)
+
+
+playlist = Playlist()
 
 
 if __name__ == '__main__':
