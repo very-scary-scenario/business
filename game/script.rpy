@@ -580,9 +580,9 @@ label inmeeting:
     else:
         "i dunno maybe our internet is broken that didn't work"
 
-    return
+    jump new_video
 
-label new_video:  # XXX should be nothing
+label new_video:
     menu:
         "There is a youtube video URL in my clipboard":
             jump paste
