@@ -23,7 +23,8 @@ init -1 python hide:
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
 
-    config.window_title = u"Why am I in this meeting"
+    config.window_title = u"Now That's What I Call Business!"
+    config.window_icon = "icon.png"
 
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
@@ -71,7 +72,7 @@ init -1 python hide:
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "#59667a",
+        mm_root = "titlescreen.jpg",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
