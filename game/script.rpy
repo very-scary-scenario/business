@@ -599,6 +599,8 @@ label paste:
 
         $ youtube.playlist.append(video)
 
+        if video.is_gangnam_style():
+            jump gangnam_style_video
         if video.is_short():
             jump short_video
         else:
@@ -606,6 +608,10 @@ label paste:
     else:
         "i dunno maybe our internet is broken that didn't work"
         jump new_video
+
+label gangnam_style_video:
+    "oh just fuck off"
+    jump new_video
 
 label short_video:
     "FUCK MAN THAT IS WAY TOO SHORT"

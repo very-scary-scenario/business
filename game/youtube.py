@@ -67,6 +67,9 @@ class Video(object):
     def is_already_in_playlist(self):
         return self.id in [v.id for v in playlist]
 
+    def is_gangnam_style(self):
+        return self.id == '9bZkp7q19f0'
+
     def is_short(self):
         return self.duration.seconds < 90
 
