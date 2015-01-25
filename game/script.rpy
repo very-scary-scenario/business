@@ -42,34 +42,34 @@ image phone = "phone.png"
 # The game starts here.
 init:
     $ meeting_timer_set = None
-
     python:
         import youtube
+        timers = []
+        seconds_in_a_minute = 60.0
 
-        meeting_timer = None
-        meeting_timer_finished = None
-        current = -1
+        def make_notifier(count):
+            return lambda: renpy.notify(count)
 
-        def long_timer():
-            if meeting_timer_set:
-                ui.timer(1.0, ui.callsinnewcontext("counter"), repeat=True)
+        def start_meeting_timer():
+            ui.layer("screens")
+            renpy.notify('five minutes remaining')
 
-        config.overlay_functions.append(long_timer)
+            for count, name in [
+                (1, 'four minutes remaining'),
+                (2, 'three minutes remaining'),
+                (3, 'two minutes remaining'),
+                (4, 'one minute remaining'),
+            ]:
+                timers.append(ui.timer(count * seconds_in_a_minute, action=make_notifier(name)))
 
-        def showcount(st, at):
-            return Text("%.1f" % current, color="#fff", size=72), 0.5
+            timers.append(ui.timer(5 * seconds_in_a_minute, action=ui.jumps("timesup")))
+            ui.close()
 
-    image countdown = DynamicDisplayable(showcount)
-
-label counter:
-    hide counter
-    show counter
-    $ current -= 1
-    $ renpy.restart_interaction()
-    if current <= 0:
-        $ meeting_timer_set = False
-        jump timesup
-    return
+        def kill_meeting_timer():
+            ui.layer("screens")
+            for timer in timers:
+                ui.remove(timer)
+            ui.close()
 
 # The game starts here.
 label start:
@@ -97,10 +97,7 @@ label video:
 
 show phone at right
 
-$ current = 10
-$ ltimer_finished = "timesup"
-$ meeting_timer_set = True
-show countdown at Position(xalign=.1, yalign=.1)
+$ start_meeting_timer()
 
 "Ungh..."
 
@@ -531,8 +528,6 @@ label pre_meeting_options:
     jump pre_meeting_options
     
     label timesup:
-    $ meetin_timer_set = False
-    $ current = 0
     show leslie
     s "Hey, you're going to be late for the meeting!"
     s "Get moving or it's your head on the block!"
@@ -540,8 +535,7 @@ label pre_meeting_options:
     jump meeting
     
     label meeting:
-        $ meetin_timer_set = False
-        $ current = 0
+        $ kill_meeting_timer()
         scene bg premeeting
         with fade
         
