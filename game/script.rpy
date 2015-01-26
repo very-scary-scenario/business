@@ -455,8 +455,8 @@ label bossroom:
         "Now I'm disappointed."
         jump pre_meeting_options
 
-    "Well, this is it. We've become desperate enough to put the job on the line. Whatever it is."
-    "Fortunately for you, the boss insists on arriving to meetings early. They've already booted out the people who should currently be in the meeting room."
+    "Well, this is it. You've become desperate enough to put the job on the line. Whatever it is."
+    "Fortunately for you, the boss doesn't appear to be here. They've already booted out the people who should currently be in the meeting room."
     "Perks of being the boss, I suppose."
     "But it gives you free reign of the boss' room. You'd hope that there would be something here that would tell you what's up."
     "{i}You'd hope.{/i}"
@@ -591,6 +591,8 @@ label toilet2:
         "You have washed your hands once."
     else:
         "You have washed your hands [hands_washed_times] times."
+    if hands_washed_times >= 5:
+        "You've used used up the last of the soap, but you continue to wash your hands anyway."
     jump attoilet
 
 label toilet3:
@@ -678,11 +680,8 @@ label inmeeting:
     ge "I was finished talking. Sorry boss."
     m "Wait, I thought that music was playing all over the office?"
     show boss
-    b "No, I've been following you."
-    b "Everywhere."
-    if bossroom_entered:
-        b "Including my office. We'll talk about that later."
-
+    b "I've seen {i}everything.{/i}"
+    
     scene bg meeting
 
     b "In that case we're just waiting on Mia."
@@ -890,7 +889,7 @@ label meeting_dec_two:
 
 label meetingd2o1:
     scene bg george
-    g "Classical music?"
+    ge "Classical music?"
     show bg meeting
     show fiona
     f "What counts as classical? Like, early Bieber?"
@@ -1224,6 +1223,5 @@ label endgame:
     scene bg certificate
     with fade
 
-    $ playlist.aq()
     $ centered(u"{color=#000000}{size=+10}~CONGRATULATIONS~{/size}\nYou and your team assembled a collection of soulless music and it brought no relief to the short, meaningless existences of anyone who heard it.\n\nGaze upon your creation and weep.\n\n[playlist.certificate_text]{/color}")
     $ centered(u"{color=#000000}[playlist.stats]{/color}")
