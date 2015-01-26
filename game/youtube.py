@@ -82,7 +82,7 @@ class Playlist(list):
                 'You were all convicted of crimes against humanity.',
             ]),
             'It made {amount}{unit} {currency}.'.format(
-                amount=self.choice(['forty', 'a thousand', 'twelve', 'two']),
+                amount=self.choice(['forty', 'a hundred', 'twelve', 'two']),
                 unit=self.choice([' billion', ' thousand', '']),
                 currency=self.choice(['pounds', 'dollars', 'rubles', 'mBTC',
                                       'Nectar points']),
