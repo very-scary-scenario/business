@@ -351,3 +351,5 @@ init python:
     build.documentation('*.html')
     build.documentation('*.txt')
     
+    ## Makes esc or any other binding go to preferences instead of the default game menu
+    _game_menu_screen = 'preferences'
