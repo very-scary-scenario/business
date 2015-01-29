@@ -514,7 +514,7 @@ label boss4:
     $ bossroom_poetry = True
     "We just hit a goldmine. It's a notebook labelled 'Haikus by Boss'."
     "Flick to the end, I want to see what the latest entry is."
-    "Bear at the river \nStomach growling with hunger\n Next applicant, please."
+    "Bear at the river \nStomach growling with hunger \nNext applicant, please."
     "...the boss continues to impress."
     jump inbossroom
 
