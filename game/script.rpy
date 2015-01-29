@@ -115,7 +115,7 @@ label awaken:
     $ kitchen_sad = False
     $ desk_searched = False
     $ bossroom_searched = False
-    $ bossroom_entered = False
+    $ bossroom_poetry = False
     $ reception_visited = False
     scene bg mydesk
     play music "shitty vn music.ogg"
@@ -475,6 +475,9 @@ label inbossroom:
 
         "Look inside the book marked 'Bossing for Dummies'.":
             jump boss3
+            
+        "Flip through the boss' notepad.":
+            jump boss4
 
 label boss1:
     "It's an interesting approach to take, that much is for sure."
@@ -505,6 +508,14 @@ label boss3:
     "Hold the phone, this book is annotated. There might be something interesting here."
     "Hmm, looks like a few passages are highlighted. 'How to negotiate with business partners' and 'Budgeting 101' are quite vigorously circled."
     "Let's just be happy knowing that they are at least trying to better themselves, one way or another."
+    jump inbossroom
+    
+label boss4:
+    $ bossroom_poetry = True
+    "We just hit a goldmine. It's a notebook labelled 'Haikus by Boss'."
+    "Flick to the end, I want to see what the latest entry is."
+    "Bear at the river \nStomach growling with hunger \nNext applicant, please."
+    "...the boss continues to impress."
     jump inbossroom
 
 label reception:
@@ -680,7 +691,12 @@ label inmeeting:
     ge "I was finished talking. Sorry boss."
     m "Wait, I thought that music was playing all over the office?"
     show boss
-    b "I've seen {i}everything.{/i}"
+    b "I've seen {i}everything{/i}."
+    
+    if bossroom_poetry:
+    
+        b "Speaking of which, I've scheduled you in for a three hour meeting after this, I hope you don't mind."
+        b "You seem to have an interest in poetry so I'd like to bounce some ideas off you."
     
     scene bg meeting
 
@@ -942,7 +958,7 @@ label meetingd2o3:
     l "DID SOMEONE SAY NEW BEYONCÉ ALBUM?"
     b "Who are you?"
     mi "NEW BEYONCÉ ALBUM!"
-    "{i}incomprehensible screaming: the reckoning.{/i}"
+    "{i}incomprehensible screaming: the reckoning{/i}."
     m "Sorry boss."
     b "You'd better be."
     hide mia
