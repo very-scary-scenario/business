@@ -1,0 +1,4 @@
+[submodule "game/tlslite-ng"]
+	path = game/tlslite-ng
+	url = https://github.com/tlsfuzzer/tlslite-ng.git
+	branch = master
