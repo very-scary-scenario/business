@@ -23,7 +23,7 @@ url_fmt = (
 PLAYLIST_LENGTH = 5
 
 SUGGESTED_VIDEOS = [
-    ('usxrnYRZf_g', '&t=25s'),
+    ('ow0wVS9S3a4', '&t=25s'),
     ('IkfuLA5GMCA', ''),
     ('eFO0Xo9TZ54', ''),
     ('_etl_qkelX0', ''),
