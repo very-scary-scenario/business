@@ -11,8 +11,8 @@ import pyperclip
 from tlslite import HTTPTLSConnection
 
 
-google_domain = 'www.googleapis.com'
-url_fmt = (
+google_domain: str = 'www.googleapis.com'
+url_fmt: str = (
     '/youtube/v3/videos?'
     'alt=json&'
     'part=snippet%2Cstatistics%2CcontentDetails&'
@@ -21,9 +21,9 @@ url_fmt = (
 )
 
 
-PLAYLIST_LENGTH = 5
+PLAYLIST_LENGTH: int = 5
 
-SUGGESTED_VIDEOS = [
+SUGGESTED_VIDEOS: list[tuple[str, str]] = [
     ('ow0wVS9S3a4', '&t=25s'),
     ('IkfuLA5GMCA', ''),
     ('eFO0Xo9TZ54', ''),
