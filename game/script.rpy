@@ -1046,7 +1046,7 @@ label new_video:
             ge "Last track? Please pick something by Cliff Richard."
 
     menu:
-        "I solemnly swear that I have the correct YouTube URL copied already.":
+        "I have the correct YouTube URL copied already.":
             jump paste
 
 label paste:
